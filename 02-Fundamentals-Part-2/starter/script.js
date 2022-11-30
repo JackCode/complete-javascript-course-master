@@ -99,33 +99,47 @@
 // jackson['twitter'] = '@helaaspk';
 // console.log(jackson);
 
-const jackson = {
-    firstName:      'Jackson',
-    lastName:       'Weber',
-    birthYear:      1991,
-    job:            'Manager',
-    friends:        ['Patrick', 'Amelia', 'Emily'],
-    driversLicense: true,
+// const jackson = {
+//     firstName:      'Jackson',
+//     lastName:       'Weber',
+//     birthYear:      1991,
+//     job:            'Manager',
+//     friends:        ['Patrick', 'Amelia', 'Emily'],
+//     driversLicense: true,
 
-    // calcAge: function (birthYear) {
-    //     return 2022 - birthYear;
-    // }
+//     // calcAge: function (birthYear) {
+//     //     return 2022 - birthYear;
+//     // }
 
-    // calcAge: function () {
-    //     return 2022 - this.birthYear;
-    // }
+//     // calcAge: function () {
+//     //     return 2022 - this.birthYear;
+//     // }
 
-    calcAge: function () {
-        this.age = 2022 - this.birthYear;
-        return this.age;
-    }
-};
+//     calcAge: function () {
+//         this.age = 2022 - this.birthYear;
+//         return this.age;
+//     }
+// };
 
 // console.log(jackson.calcAge(1991));
 // console.log(jackson['calcAge'](1980));
 
-console.log(jackson.calcAge());
-console.log(jackson.age);
-console.log(jackson.age);
-console.log(jackson.age);
-console.log(jackson.age);
+// console.log(jackson.calcAge());
+// console.log(jackson.age);
+// console.log(jackson.age);
+// console.log(jackson.age);
+// console.log(jackson.age);
+
+// The for loop
+// bad
+// console.log('lift weight 🏋️');
+// console.log('lift weight 🏋️');
+// console.log('lift weight 🏋️');
+// console.log('lift weight 🏋️');
+// console.log('lift weight 🏋️');
+// console.log('lift weight 🏋️');
+// console.log('lift weight 🏋️');
+
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`lift weight time ${rep} 🏋️`);
+}
