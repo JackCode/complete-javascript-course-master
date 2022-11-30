@@ -71,21 +71,21 @@
 // console.log(friends.includes('23'));
 
 // INTRODUCTION TO OBJECTS
-const jackson = {
-    firstName:  'Jackson',
-    lastName:   'Weber',
-    age:        2022 - 1991,
-    job:        'Manager',
-    friends:    ['Patrick', 'Amelia', 'Emily'],
-};
+// const jackson = {
+//     firstName:  'Jackson',
+//     lastName:   'Weber',
+//     age:        2022 - 1991,
+//     job:        'Manager',
+//     friends:    ['Patrick', 'Amelia', 'Emily'],
+// };
 
 // Dot vs. Bracket notation
-console.log(jackson.lastName);
-console.log(jackson['friends']);
+// console.log(jackson.lastName);
+// console.log(jackson['friends']);
 
-const nameKey = 'Name';
-console.log(jackson['first' + nameKey]);
-console.log(jackson['last' + nameKey]);
+// const nameKey = 'Name';
+// console.log(jackson['first' + nameKey]);
+// console.log(jackson['last' + nameKey]);
 
 // const interestedIn = prompt('What do you want to know about Jackson? Choose betwwen firstName, lastName, age, job, friends');
 
@@ -95,8 +95,37 @@ console.log(jackson['last' + nameKey]);
 //     console.log('Invalid request. Choose betwwen firstName, lastName, age, job, friends.')
 // }
 
-jackson.location = 'Kentucky';
-jackson['twitter'] = '@helaaspk';
-console.log(jackson);
+// jackson.location = 'Kentucky';
+// jackson['twitter'] = '@helaaspk';
+// console.log(jackson);
 
+const jackson = {
+    firstName:      'Jackson',
+    lastName:       'Weber',
+    birthYear:      1991,
+    job:            'Manager',
+    friends:        ['Patrick', 'Amelia', 'Emily'],
+    driversLicense: true,
 
+    // calcAge: function (birthYear) {
+    //     return 2022 - birthYear;
+    // }
+
+    // calcAge: function () {
+    //     return 2022 - this.birthYear;
+    // }
+
+    calcAge: function () {
+        this.age = 2022 - this.birthYear;
+        return this.age;
+    }
+};
+
+// console.log(jackson.calcAge(1991));
+// console.log(jackson['calcAge'](1980));
+
+console.log(jackson.calcAge());
+console.log(jackson.age);
+console.log(jackson.age);
+console.log(jackson.age);
+console.log(jackson.age);
