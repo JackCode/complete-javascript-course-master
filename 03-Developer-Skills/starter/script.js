@@ -3,5 +3,5 @@
 
 const c = '23';
 
-const calcAge = (birthYear) => birthYear - 5;
-console.log(calcAge);
+const calcAge = (birthYear) => 2022 - birthYear;
+console.log(calcAge(1992));
