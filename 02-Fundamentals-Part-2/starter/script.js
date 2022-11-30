@@ -11,7 +11,7 @@
 
 // }
 
-const friends = ['Patrick', 'Emily', 'Sandra'];
+const friends = ['Chad', 'Jackson', 'Patrick'];
 console.log(friends);
 
 // const years = new Array(1992, 1907, 1885);
@@ -35,3 +35,7 @@ const calcAge = function (birthYear) {
     return new Date().getFullYear() - birthYear;
 }
 
+const years = [1990, 1991, 1996];
+
+const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length-1])];
+console.log(ages);
