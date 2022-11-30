@@ -140,25 +140,39 @@
 // console.log('lift weight 🏋️');
 // console.log('lift weight 🏋️');
 
-for (let rep = 1; rep <= 10; rep++) {
-    console.log(`lift weight time ${rep} 🏋️`);
+// for (let rep = 1; rep <= 10; rep++) {
+//     console.log(`lift weight time ${rep} 🏋️`);
+// }
+
+// // Looping through arrays, break, continue
+// const jackson = ['Jackson', 'Weber', 1991, 36, 'Manager', ['Patrick', 'Emily', 'Amelia']];
+// const types = [];
+
+// for (let i = 0; i < jackson.length; i++) {
+//     console.log(jackson[i], typeof jackson[i]);
+//     // types[i] = typeof jackson[i];
+//     types.push(typeof jackson[i]);
+// }
+// console.log(types);
+
+// const years = [1991, 2007, 1964, 2016];
+// const ages = [];
+
+// for (let i = 0; i < years.length; i++) {
+//     ages.push(2022 - years[i]);
+// }
+// console.log(ages);
+
+/** The While Loop */
+// let rep = 1;
+// while (rep <= 10) {
+//     console.log(`lift weight time ${rep} 🏋️`);
+//     rep++;
+// }
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
 }
-
-// Looping through arrays, break, continue
-const jackson = ['Jackson', 'Weber', 1991, 36, 'Manager', ['Patrick', 'Emily', 'Amelia']];
-const types = [];
-
-for (let i = 0; i < jackson.length; i++) {
-    console.log(jackson[i], typeof jackson[i]);
-    // types[i] = typeof jackson[i];
-    types.push(typeof jackson[i]);
-}
-console.log(types);
-
-const years = [1991, 2007, 1964, 2016];
-const ages = [];
-
-for (let i = 0; i < years.length; i++) {
-    ages.push(2022 - years[i]);
-}
-console.log(ages);
