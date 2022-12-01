@@ -48,9 +48,15 @@
 //   console.log('All products deleted');
 // }
 
-var x = 1; // Creates variable on window object
-let y = 2;
-const z = 3;
+// var x = 1; // Creates variable on window object
+// let y = 2;
+// const z = 3;
 
-console.log(x === window.x);
-console.log(y === window.y);
+// console.log(x === window.x);
+// console.log(y === window.y);
+
+// THIS KEYWORD
+// Method in object, this references object
+// Function -> this is undefined (in strict mode), loose -> window
+// Arrow functions -> lexical (this is not part of context)
+// Event listener -> attached to DOM element
