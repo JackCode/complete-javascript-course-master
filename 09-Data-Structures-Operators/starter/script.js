@@ -30,36 +30,79 @@ const restaurant = {
       close: 24,
     },
   },
+
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    console.log(starterIndex, mainIndex, time, address);
+  },
 };
 
-// DESTRUCTURING
-const arr = [2, 3, 4];
-const a = arr[0];
-const b = arr[1];
-const c = arr[2];
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sole, 21',
+  mainIndex: 2,
+  starterIndex: 2,
+});
 
-const [x, y, z] = arr;
-console.log(x, y, z);
-console.log(arr);
+restaurant.orderDelivery({
+  address: 'Via del Sole, 21',
+  starterIndex: 2,
+});
 
-const [first, second] = restaurant.categories;
-console.log(first, second);
+// DESTRUCTURING OBJECTS
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
+// const { name: resName, openingHours: hours, categories: cats } = restaurant;
+// console.log(resName, hours, cats);
 
-let [one, , three] = restaurant.categories;
-console.log(one, three);
+// const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
 
-[three, one] = [one, three];
-console.log(one, three);
+// // Mutating objects
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
+// ({ a, b } = obj);
+// console.log(a, b);
 
-const [starter, mainCourse] = restaurant.order(2, 0);
-console.log(starter, mainCourse);
+// // nested objects
+// const {
+//   fri: { open: o, close: c },
+// } = openingHours;
+// console.log(o, c);
 
-const nested = [2, 4, [5, 6]];
-// const [i, , j] = nested;
-// console.log(i, j);
-const [i, , [j, k]] = nested;
-console.log(i, j, k);
+// DESTRUCTURING ARRAYS
+// const arr = [2, 3, 4];
+// const a = arr[0];
+// const b = arr[1];
+// const c = arr[2];
 
-// default values
-const [p = 1, q = 2, r = 3] = [8, 9];
-console.log(p, q, r);
+// const [x, y, z] = arr;
+// console.log(x, y, z);
+// console.log(arr);
+
+// const [first, second] = restaurant.categories;
+// console.log(first, second);
+
+// let [one, , three] = restaurant.categories;
+// console.log(one, three);
+
+// [three, one] = [one, three];
+// console.log(one, three);
+
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse);
+
+// const nested = [2, 4, [5, 6]];
+// // const [i, , j] = nested;
+// // console.log(i, j);
+// const [i, , [j, k]] = nested;
+// console.log(i, j, k);
+
+// // default values
+// const [p = 1, q = 2, r = 3] = [8, 9];
+// console.log(p, q, r);
