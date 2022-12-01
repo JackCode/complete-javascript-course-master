@@ -61,33 +61,64 @@
 // Arrow functions -> lexical (this is not part of context)
 // Event listener -> attached to DOM element
 
-console.log(this); // window
+// console.log(this); // window
 
-const calcAge = function () {
-  console.log(this); // undefined in strict mode
-};
-calcAge();
+// const calcAge = function () {
+//   console.log(this); // undefined in strict mode
+// };
+// calcAge();
 
-const calcAgeArrow = () => {
-  console.log(this); // Window (lexical this of parent (global) scope)
-};
-calcAgeArrow();
+// const calcAgeArrow = () => {
+//   console.log(this); // Window (lexical this of parent (global) scope)
+// };
+// calcAgeArrow();
+
+// const jackson = {
+//   year: 1991,
+//   calcAgeJackson: function () {
+//     console.log(this);
+//     console.log(2022 - this.year);
+//   },
+// };
+// jackson.calcAgeJackson();
+
+// const matilda = {
+//   year: 2017,
+// };
+
+// matilda.calcAge = jackson.calcAgeJackson;
+// matilda.calcAge();
+
+// const f = jackson.calcAgeJackson;
+// f();
+
+var firstName = 'Patrick';
 
 const jackson = {
+  firstName: 'Jackson',
   year: 1991,
+  //   calcAgeJackson: function () {
+  //     console.log(this);
+  //     console.log(2022 - this.year);
+
+  //     const self = this; // self or that
+  //     const isMillennial = function () {
+  //       //   console.log(this.year);
+  //       console.log(self.year);
+  //     };
+  //     isMillennial();
+  //   },
   calcAgeJackson: function () {
     console.log(this);
     console.log(2022 - this.year);
+
+    const isMillennial = () => {
+      //   console.log(this.year);
+      console.log(this.year);
+    };
+    isMillennial();
   },
+  greet: () => console.log(`Hey ${this.firstName}`), // DONT USE ARROW IN METHODS
 };
+jackson.greet();
 jackson.calcAgeJackson();
-
-const matilda = {
-  year: 2017,
-};
-
-matilda.calcAge = jackson.calcAgeJackson;
-matilda.calcAge();
-
-const f = jackson.calcAgeJackson;
-f();
