@@ -1,6 +1,6 @@
 'use strict';
 
-const winningScore = 20;
+const winningScore = 100;
 
 // Selecting elements from DOM
 const score0El = document.querySelector('#score--0');
@@ -18,7 +18,6 @@ const btnHold = document.querySelector('.btn--hold');
 score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
-btnNew.classList.add('hidden');
 
 // Create score/player tracking variables
 const scores = [0, 0];
@@ -84,6 +83,21 @@ btnHold.addEventListener('click', function () {
 });
 
 btnNew.addEventListener('click', function () {
-  if (!playing) {
-  }
+  console.log('--- NEW GAME ---');
+  diceEl.classList.add('hidden');
+  const winner = document.querySelector(`.player--${activePlayer}`);
+  winner.classList.remove('player--winner');
+  winner.classList.add('player--active');
+
+  score0El.textContent = 0;
+  scores[0] = 0;
+  current0El.textContent = 0;
+
+  score1El.textContent = 0;
+  scores[1] = 0;
+  current1El.textContent = 0;
+
+  playing = true;
+  btnHold.classList.remove('hidden');
+  btnRoll.classList.remove('hidden');
 });
