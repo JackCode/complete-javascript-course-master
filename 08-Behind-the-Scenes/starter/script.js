@@ -60,3 +60,34 @@
 // Function -> this is undefined (in strict mode), loose -> window
 // Arrow functions -> lexical (this is not part of context)
 // Event listener -> attached to DOM element
+
+console.log(this); // window
+
+const calcAge = function () {
+  console.log(this); // undefined in strict mode
+};
+calcAge();
+
+const calcAgeArrow = () => {
+  console.log(this); // Window (lexical this of parent (global) scope)
+};
+calcAgeArrow();
+
+const jackson = {
+  year: 1991,
+  calcAgeJackson: function () {
+    console.log(this);
+    console.log(2022 - this.year);
+  },
+};
+jackson.calcAgeJackson();
+
+const matilda = {
+  year: 2017,
+};
+
+matilda.calcAge = jackson.calcAgeJackson;
+matilda.calcAge();
+
+const f = jackson.calcAgeJackson;
+f();
