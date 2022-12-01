@@ -50,17 +50,22 @@ const restaurant = {
   },
 };
 
-console.log(3 || 'Jackson');
-console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+// console.log(3 || 'Jackson');
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
 
-restaurant.numGuests = 0;
-// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-let guests2 = restaurant.numGuests || 10;
-console.log(guests2);
+// restaurant.numGuests = 0;
+// // const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// let guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
 
-// Nullish coalesching operator
-guests2 = restaurant.numGuests ?? 10; // knowledge values says empty strings and 0 are true
-console.log(guests2);
+// // Nullish coalesching operator
+// guests2 = restaurant.numGuests ?? 10; // knowledge values says empty strings and 0 are true
+// console.log(guests2);
+
+// logical assingments
+// ||=
+// &&=
+// ??=
 
 // const add = function (...numbers) {
 //   let sum = 0;
