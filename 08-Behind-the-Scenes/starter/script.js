@@ -92,33 +92,82 @@
 // const f = jackson.calcAgeJackson;
 // f();
 
-var firstName = 'Patrick';
+// var firstName = 'Patrick';
 
-const jackson = {
-  firstName: 'Jackson',
-  year: 1991,
-  //   calcAgeJackson: function () {
-  //     console.log(this);
-  //     console.log(2022 - this.year);
+// const jackson = {
+//   firstName: 'Jackson',
+//   year: 1991,
+//   //   calcAgeJackson: function () {
+//   //     console.log(this);
+//   //     console.log(2022 - this.year);
 
-  //     const self = this; // self or that
-  //     const isMillennial = function () {
-  //       //   console.log(this.year);
-  //       console.log(self.year);
-  //     };
-  //     isMillennial();
-  //   },
-  calcAgeJackson: function () {
-    console.log(this);
-    console.log(2022 - this.year);
+//   //     const self = this; // self or that
+//   //     const isMillennial = function () {
+//   //       //   console.log(this.year);
+//   //       console.log(self.year);
+//   //     };
+//   //     isMillennial();
+//   //   },
+//   calcAgeJackson: function () {
+//     console.log(this);
+//     console.log(2022 - this.year);
 
-    const isMillennial = () => {
-      //   console.log(this.year);
-      console.log(this.year);
-    };
-    isMillennial();
-  },
-  greet: () => console.log(`Hey ${this.firstName}`), // DONT USE ARROW IN METHODS
+//     const isMillennial = () => {
+//       //   console.log(this.year);
+//       console.log(this.year);
+//     };
+//     isMillennial();
+//   },
+//   greet: () => console.log(`Hey ${this.firstName}`), // DONT USE ARROW IN METHODS
+// };
+// jackson.greet();
+// jackson.calcAgeJackson();
+
+// Primitives vs Objects
+// let age = 30;
+// let oldAge = age;
+// age = 31;
+// console.log(age);
+// console.log(oldAge);
+
+// const me = {
+//   firstName: 'Jackson',
+//   age: 31,
+// };
+
+// const friend = me;
+// friend.age = 26;
+
+// console.log(friend);
+// console.log(me); 😱
+
+let lastName = 'Weber';
+let oldLast = lastName;
+lastName = 'Cordero';
+console.log(lastName, oldLast);
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
 };
-jackson.greet();
-jackson.calcAgeJackson();
+
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log('Before Marriage:', jessica);
+console.log('After Marriage:', marriedJessica);
+
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+const marriedJessica2 = Object.assign({}, jessica2);
+marriedJessica2.lastName = 'Davis';
+marriedJessica2.family.push('Cat', 'David');
+console.log(jessica2);
+console.log(marriedJessica2);
+
+// Deep copies are hard to do and will use an external library
