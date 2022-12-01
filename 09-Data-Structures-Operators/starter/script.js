@@ -43,21 +43,46 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log('ORDERING:', ing1, ing2, ing3);
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
-// Rest
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
 
-const arr = [1, 2, ...[3, 4]];
+add(1, 2, 3);
+add(3, 7, 23, 7, 2, 5, 9);
+add(1, 7);
 
-// Rest pattern uses spread op on left side of array
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+const arr = [12, 4, 1];
+add(...arr);
+add(1);
 
-const [pizza, , risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherFood);
+restaurant.orderPizza('mushrooms', 'onions', 'olives', 'pep');
+restaurant.orderPizza('cheese');
+restaurant.orderPizza();
+
+// // Rest
+
+// const arr = [1, 2, ...[3, 4]];
+
+// // Rest pattern uses spread op on left side of array
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
+
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFood);
 
 // const ingredients = [prompt('Ing1'), prompt('Ing2'), prompt('Ing3')];
 // console.log(ingredients);
