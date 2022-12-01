@@ -45,14 +45,28 @@ const restaurant = {
   },
 };
 
+// Rest
+
+const arr = [1, 2, ...[3, 4]];
+
+// Rest pattern uses spread op on left side of array
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
 // const ingredients = [prompt('Ing1'), prompt('Ing2'), prompt('Ing3')];
 // console.log(ingredients);
 
 // restaurant.orderPasta(...ingredients);
 
-// since 2018, works on objects
-const newRestaurant = { ...restaurant, founder: 'Jackson', founded: 1998 };
-console.log(newRestaurant);
+// // since 2018, works on objects
+// const newRestaurant = { ...restaurant, founder: 'Jackson', founded: 1998 };
+// console.log(newRestaurant);
 
 // restaurant.orderDelivery({
 //   time: '22:30',
