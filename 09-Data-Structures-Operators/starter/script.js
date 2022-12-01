@@ -50,25 +50,37 @@ const restaurant = {
   },
 };
 
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
-  console.log(sum);
-};
+console.log(3 || 'Jackson');
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
 
-add(1, 2, 3);
-add(3, 7, 23, 7, 2, 5, 9);
-add(1, 7);
+restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+let guests2 = restaurant.numGuests || 10;
+console.log(guests2);
 
-const arr = [12, 4, 1];
-add(...arr);
-add(1);
+// Nullish coalesching operator
+guests2 = restaurant.numGuests ?? 10; // knowledge values says empty strings and 0 are true
+console.log(guests2);
 
-restaurant.orderPizza('mushrooms', 'onions', 'olives', 'pep');
-restaurant.orderPizza('cheese');
-restaurant.orderPizza();
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//   }
+//   console.log(sum);
+// };
+
+// add(1, 2, 3);
+// add(3, 7, 23, 7, 2, 5, 9);
+// add(1, 7);
+
+// const arr = [12, 4, 1];
+// add(...arr);
+// add(1);
+
+// restaurant.orderPizza('mushrooms', 'onions', 'olives', 'pep');
+// restaurant.orderPizza('cheese');
+// restaurant.orderPizza();
 
 // // Rest
 
