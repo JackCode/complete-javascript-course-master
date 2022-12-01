@@ -39,19 +39,32 @@ const restaurant = {
   }) {
     console.log(starterIndex, mainIndex, time, address);
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log('ORDERING:', ing1, ing2, ing3);
+  },
 };
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+// const ingredients = [prompt('Ing1'), prompt('Ing2'), prompt('Ing3')];
+// console.log(ingredients);
 
-restaurant.orderDelivery({
-  address: 'Via del Sole, 21',
-  starterIndex: 2,
-});
+// restaurant.orderPasta(...ingredients);
+
+// since 2018, works on objects
+const newRestaurant = { ...restaurant, founder: 'Jackson', founded: 1998 };
+console.log(newRestaurant);
+
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del Sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
+
+// restaurant.orderDelivery({
+//   address: 'Via del Sole, 21',
+//   starterIndex: 2,
+// });
 
 // DESTRUCTURING OBJECTS
 // const { name, openingHours, categories } = restaurant;
@@ -106,3 +119,32 @@ restaurant.orderDelivery({
 // // default values
 // const [p = 1, q = 2, r = 3] = [8, 9];
 // console.log(p, q, r);
+
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(arr);
+// console.log(badNewArr);
+
+// const goodNewArr = [1, 2, ...arr];
+// console.log(goodNewArr);
+
+// console.log(...goodNewArr);
+
+// const newMenu = [...restaurant.mainMenu, 'Gnocchi'];
+// console.log(newMenu);
+
+// // Shallow copy array
+// const mainMenuCopy = [...restaurant.mainMenu];
+// console.log(mainMenuCopy);
+
+// // Join 2 arrays
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+
+// // Iterables are arrays, strings, maps, and sets....not objects
+// const str = 'Jackson';
+// const letters = [...str, ' ', 's'];
+// console.log(letters);
+// console.log(...str);
+
+// // spread args for functions
