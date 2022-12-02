@@ -84,6 +84,42 @@ checkMiddleSeat('11B');
 checkMiddleSeat('23C');
 checkMiddleSeat('3E');
 
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+let passenger = 'jAckSon';
+passenger = passenger.toLowerCase();
+passenger = passenger[0].toUpperCase() + passenger.slice(1);
+console.log(passenger);
+
+const email = 'helaaspk@gmail.com';
+const loginEmail = '    HeLAASpk@gMAIL.COM \n';
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+const priceGB = '123,45￡';
+const priceUS = priceGB.replace('￡', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23, Boarding door 23';
+
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+console.log(announcement.replace(/door/g, 'gate'));
+
+const planeA = 'A320neo';
+console.log(planeA.includes('A320'));
+console.log(planeA.includes('Boeing'));
+
+console.log();
+
 /** MAPS WITHOUT SET METHOD */
 // const question = new Map([
 //   ['question', 'Best language?'],
