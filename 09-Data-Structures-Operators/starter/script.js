@@ -45,32 +45,137 @@ const restaurant = {
   },
 };
 
-/** LOOPING OBJECTS */
-// Property names (aka keys)
-for (const day of Object.keys(restaurant.openingHours)) {
-  console.log(day);
-}
+/** WORKING WITH STRINGS */
 
-const properties = Object.keys(restaurant.openingHours);
-console.log(properties);
+const 
 
-let openStr = `We are open on ${properties.length} days: `;
-for (const day of properties) {
-  openStr += `${day}, `;
-}
-console.log(openStr);
+/** MAPS WITHOUT SET METHOD */
+// const question = new Map([
+//   ['question', 'Best language?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct 🎉'],
+//   [false, 'Try again!'],
+// ]);
+// console.log(question);
 
-// Property values
-const values = Object.values(restaurant.openingHours);
-console.log(values);
+// // Convert object to map
+// const hoursMap = new Map(Object.entries(restaurant.openingHours));
+// console.log(hoursMap);
 
-// Both keys and values
-const entries = Object.entries(restaurant.openingHours);
-console.log(entries);
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') {
+//     console.log(`${key}: ${value}`);
+//   }
+// }
+// const answer = Number(prompt('Guess?'));
+// console.log(answer);
 
-for (const [key, { open, close }] of entries) {
-  console.log(`On ${key}, we open at ${open} and close at ${close}`);
-}
+// console.log(question.get(answer === question.get('correct')));
+
+// // Convert Map to array
+// console.log([...question]);
+
+/** MAPS */
+// const rest = new Map();
+// rest.set('name', 'Chipotle');
+// rest.set(1, 'Cincinnati, OH');
+// console.log(rest.set(2, 'Chicago, Illinois'));
+
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'We are open :D')
+//   .set(false, 'We are closed :(');
+
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+// console.log(rest.get(1));
+
+// const time = 8;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// console.log(rest.has('categories'));
+// rest.delete(2);
+// console.log(rest);
+// console.log(rest.size);
+// // rest.clear();
+// // console.log(rest);
+
+// const arr = [1, 2];
+// rest.set(arr, 'Test');
+// console.log(rest);
+// console.log(rest.get(arr));
+
+// rest.set(document.querySelector('h1'), 'Heading');
+
+/** SETS */
+// const ordersSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+// console.log(ordersSet);
+
+// console.log(new Set('Jackson'));
+
+// console.log(ordersSet.size);
+// console.log(ordersSet.has('Pizza'));
+// console.log(ordersSet.has('Bread'));
+// console.log(ordersSet.add('Garlic Bread'));
+// console.log(ordersSet.add('Garlic Bread'));
+
+// ordersSet.delete('Risotto');
+// console.log(ordersSet);
+
+// for (const order of ordersSet) {
+//   console.log(order);
+// }
+
+// // Example
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// const positions = [...new Set(staff)];
+// console.log(positions);
+// console.log(`Staff size: ${new Set(staff).size}`);
+
+// console.log(new Set('jacksonleeweber').size);
+
+// ordersSet.clear();
+// console.log(ordersSet);
+
+// /** LOOPING OBJECTS */
+// // Property names (aka keys)
+// for (const day of Object.keys(restaurant.openingHours)) {
+//   console.log(day);
+// }
+
+// const properties = Object.keys(restaurant.openingHours);
+// console.log(properties);
+
+// let openStr = `We are open on ${properties.length} days: `;
+// for (const day of properties) {
+//   openStr += `${day}, `;
+// }
+// console.log(openStr);
+
+// // Property values
+// const values = Object.values(restaurant.openingHours);
+// console.log(values);
+
+// // Both keys and values
+// const entries = Object.entries(restaurant.openingHours);
+// console.log(entries);
+
+// for (const [key, { open, close }] of entries) {
+//   console.log(`On ${key}, we open at ${open} and close at ${close}`);
+// }
 
 /** OPTIONAL CHAINING */
 // console.log(restaurant.openingHours.mon?.open);
