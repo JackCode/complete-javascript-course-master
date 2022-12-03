@@ -125,6 +125,19 @@ const [firstName, lastName] = 'Jackson Weber'.split(' ');
 const fullName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
 console.log(fullName);
 
+const passengerJessica = 'jessica ann smith davis';
+
+const capitalizeName = function (fullName) {
+  const names = fullName.split(' ');
+  const namesUpper = [];
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+  }
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeName(passengerJessica);
+
 /** MAPS WITHOUT SET METHOD */
 // const question = new Map([
 //   ['question', 'Best language?'],
