@@ -29,30 +29,58 @@
 
 /** PARAMETERS BY VALUE VS. BY REFERENCE */
 
-const flight = 'LH234';
-const passenger = {
-  fullName: 'Jackson Weber',
-  passport: 4317849,
+// const flight = 'LH234';
+// const passenger = {
+//   fullName: 'Jackson Weber',
+//   passport: 4317849,
+// };
+
+// const checkIn = function (flightNum, passenger) {
+//   flightNum = 'LH999';
+//   passenger.fullName = 'Mr. ' + passenger.fullName;
+
+//   if (passenger.passport === 4317849) {
+//     alert('Checked in');
+//   } else {
+//     alert('Wrong passport');
+//   }
+// };
+
+// checkIn(flight, passenger);
+// console.log(flight);
+// console.log(passenger);
+
+// const newPassport = function (person) {
+//   person.passport = Math.trunc(Math.random() * 1000000000) + 1;
+// };
+
+// newPassport(passenger);
+// checkIn(flight, passenger);
+
+/** First class and higher order functions */
+
+const oneWord = function (str) {
+  return str.replaceAll(' ', '').toLowerCase();
 };
 
-const checkIn = function (flightNum, passenger) {
-  flightNum = 'LH999';
-  passenger.fullName = 'Mr. ' + passenger.fullName;
-
-  if (passenger.passport === 4317849) {
-    alert('Checked in');
-  } else {
-    alert('Wrong passport');
-  }
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
 };
 
-checkIn(flight, passenger);
-console.log(flight);
-console.log(passenger);
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
 
-const newPassport = function (person) {
-  person.passport = Math.trunc(Math.random() * 1000000000) + 1;
+  console.log(`Transformed by: ${fn.name}`);
 };
 
-newPassport(passenger);
-checkIn(flight, passenger);
+transformer('Javascript is the best!', upperFirstWord);
+transformer('Javascript is the best!', oneWord);
+
+const highFive = function () {
+  console.log('👋🏼');
+};
+document.body.addEventListener('click', highFive);
+
+['Jackson', 'Marsha', 'Adam'].forEach(highFive);
