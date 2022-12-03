@@ -118,7 +118,12 @@ const planeA = 'A320neo';
 console.log(planeA.includes('A320'));
 console.log(planeA.includes('Boeing'));
 
-console.log();
+console.log('a+very+nice+string'.split('+'));
+console.log('Jackson Weber'.split(' '));
+const [firstName, lastName] = 'Jackson Weber'.split(' ');
+
+const fullName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(fullName);
 
 /** MAPS WITHOUT SET METHOD */
 // const question = new Map([
