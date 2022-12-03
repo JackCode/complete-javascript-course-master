@@ -150,18 +150,18 @@ const flights =
 
 // console.log(maskCreditCard(1234123412347920));
 
-const badWeather = 'Bad Weather - All Departures Delayed ';
-console.log(badWeather.repeat(5));
+// const badWeather = 'Bad Weather - All Departures Delayed ';
+// console.log(badWeather.repeat(5));
 
-const planesInLine = function (numPlanes) {
-  console.log(
-    `There are ${numPlanes} planes in line ${'✈️'.repeat(numPlanes)}`
-  );
-};
-planesInLine(5);
-planesInLine(4);
-planesInLine(1);
-planesInLine(27);
+// const planesInLine = function (numPlanes) {
+//   console.log(
+//     `There are ${numPlanes} planes in line ${'✈️'.repeat(numPlanes)}`
+//   );
+// };
+// planesInLine(5);
+// planesInLine(4);
+// planesInLine(1);
+// planesInLine(27);
 
 /** MAPS WITHOUT SET METHOD */
 // const question = new Map([
