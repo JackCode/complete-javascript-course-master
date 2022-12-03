@@ -4,6 +4,25 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+const getAirportCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  // Retrieve flight information
+  let [status, from, to, time] = flight.split(';');
+
+  // Format each element of output string
+  status = status.replaceAll('_', ' ').trim();
+  from = getAirportCode(from);
+  to = getAirportCode(to);
+  time = time.replace(':', 'h');
+
+  // Assemble pieces into output string
+  const output = `${
+    status.startsWith('Delayed') ? '🔴 ' : ' '
+  }${status} from ${from} to ${to} (${time})`.padStart(44);
+  console.log(output);
+}
+
 // // Data needed for first part of the section
 // const restaurant = {
 //   name: 'Classico Italiano',
