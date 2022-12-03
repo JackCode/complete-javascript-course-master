@@ -4,139 +4,164 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-// Data needed for first part of the section
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+// // Data needed for first part of the section
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order(starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
 
-  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
-    console.log(starterIndex, mainIndex, time, address);
-  },
+//   orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+//     console.log(starterIndex, mainIndex, time, address);
+//   },
 
-  orderPasta(ing1, ing2, ing3) {
-    console.log('ORDERING:', ing1, ing2, ing3);
-  },
+//   orderPasta(ing1, ing2, ing3) {
+//     console.log('ORDERING:', ing1, ing2, ing3);
+//   },
 
-  orderPizza(mainIngredient, ...otherIngredients) {
-    console.log(mainIngredient);
-    console.log(otherIngredients);
-  },
+//   orderPizza(mainIngredient, ...otherIngredients) {
+//     console.log(mainIngredient);
+//     console.log(otherIngredients);
+//   },
+// };
+
+// /** WORKING WITH STRINGS */
+
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+
+// console.log(plane[0]);
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.indexOf('Portugal'));
+// console.log(airline.indexOf('portugal'));
+
+// console.log(airline.slice(4));
+// console.log(airline.slice(4, 7));
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') {
+//     console.log('You are in the middle seat. :(');
+//   } else {
+//     console.log('You got lucky!');
+//   }
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+// let passenger = 'jAckSon';
+// passenger = passenger.toLowerCase();
+// passenger = passenger[0].toUpperCase() + passenger.slice(1);
+// console.log(passenger);
+
+// const email = 'helaaspk@gmail.com';
+// const loginEmail = '    HeLAASpk@gMAIL.COM \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+// console.log(email === normalizedEmail);
+
+// const priceGB = '123,45￡';
+// const priceUS = priceGB.replace('￡', '$').replace(',', '.');
+// console.log(priceUS);
+
+// const announcement =
+//   'All passengers come to boarding door 23, Boarding door 23';
+
+// console.log(announcement.replace('door', 'gate'));
+// console.log(announcement.replaceAll('door', 'gate'));
+// console.log(announcement.replace(/door/g, 'gate'));
+
+// const planeA = 'A320neo';
+// console.log(planeA.includes('A320'));
+// console.log(planeA.includes('Boeing'));
+
+// console.log('a+very+nice+string'.split('+'));
+// console.log('Jackson Weber'.split(' '));
+// const [firstName, lastName] = 'Jackson Weber'.split(' ');
+
+// const fullName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(fullName);
+
+// const passengerJessica = 'jessica ann smith davis';
+
+// const capitalizeName = function (fullName) {
+//   const names = fullName.split(' ');
+//   const namesUpper = [];
+//   for (const n of names) {
+//     namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//   }
+//   console.log(namesUpper.join(' '));
+// };
+
+// capitalizeName(passengerJessica);
+
+// // padding strings
+// const message = 'Go to gate 23';
+// console.log(message.padStart(25, '+').padEnd(35, '+'));
+// console.log('Jack'.padStart(25, '+').padEnd(35, '+'));
+
+// const maskCreditCard = function (number) {
+//   const str = number + ''; // Convert number to string
+//   return str.slice(-4).padStart(str.length, '*');
+// };
+
+// console.log(maskCreditCard(1234123412347920));
+
+const badWeather = 'Bad Weather - All Departures Delayed ';
+console.log(badWeather.repeat(5));
+
+const planesInLine = function (numPlanes) {
+  console.log(
+    `There are ${numPlanes} planes in line ${'✈️'.repeat(numPlanes)}`
+  );
 };
-
-/** WORKING WITH STRINGS */
-
-const airline = 'TAP Air Portugal';
-const plane = 'A320';
-
-console.log(plane[0]);
-console.log('B737'[0]);
-
-console.log(airline.length);
-console.log('B737'.length);
-
-console.log(airline.indexOf('r'));
-console.log(airline.lastIndexOf('r'));
-console.log(airline.indexOf('Portugal'));
-console.log(airline.indexOf('portugal'));
-
-console.log(airline.slice(4));
-console.log(airline.slice(4, 7));
-
-console.log(airline.slice(0, airline.indexOf(' ')));
-console.log(airline.slice(airline.lastIndexOf(' ') + 1));
-
-console.log(airline.slice(-2));
-console.log(airline.slice(1, -1));
-
-const checkMiddleSeat = function (seat) {
-  // B and E are middle seats
-  const s = seat.slice(-1);
-  if (s === 'B' || s === 'E') {
-    console.log('You are in the middle seat. :(');
-  } else {
-    console.log('You got lucky!');
-  }
-};
-
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
-
-console.log(airline.toLowerCase());
-console.log(airline.toUpperCase());
-
-let passenger = 'jAckSon';
-passenger = passenger.toLowerCase();
-passenger = passenger[0].toUpperCase() + passenger.slice(1);
-console.log(passenger);
-
-const email = 'helaaspk@gmail.com';
-const loginEmail = '    HeLAASpk@gMAIL.COM \n';
-
-const lowerEmail = loginEmail.toLowerCase();
-const trimmedEmail = lowerEmail.trim();
-console.log(trimmedEmail);
-
-const normalizedEmail = loginEmail.toLowerCase().trim();
-console.log(normalizedEmail);
-console.log(email === normalizedEmail);
-
-const priceGB = '123,45￡';
-const priceUS = priceGB.replace('￡', '$').replace(',', '.');
-console.log(priceUS);
-
-const announcement =
-  'All passengers come to boarding door 23, Boarding door 23';
-
-console.log(announcement.replace('door', 'gate'));
-console.log(announcement.replaceAll('door', 'gate'));
-console.log(announcement.replace(/door/g, 'gate'));
-
-const planeA = 'A320neo';
-console.log(planeA.includes('A320'));
-console.log(planeA.includes('Boeing'));
-
-console.log('a+very+nice+string'.split('+'));
-console.log('Jackson Weber'.split(' '));
-const [firstName, lastName] = 'Jackson Weber'.split(' ');
-
-const fullName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
-console.log(fullName);
-
-const passengerJessica = 'jessica ann smith davis';
-
-const capitalizeName = function (fullName) {
-  const names = fullName.split(' ');
-  const namesUpper = [];
-  for (const n of names) {
-    namesUpper.push(n[0].toUpperCase() + n.slice(1));
-  }
-  console.log(namesUpper.join(' '));
-};
-
-capitalizeName(passengerJessica);
+planesInLine(5);
+planesInLine(4);
+planesInLine(1);
+planesInLine(27);
 
 /** MAPS WITHOUT SET METHOD */
 // const question = new Map([
