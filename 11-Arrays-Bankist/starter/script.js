@@ -75,12 +75,22 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-movements.forEach(function (movement, i, arr) {
-  if (movement > 0) {
-    console.log(`Movement ${i + 1}: You deposited ${movement}`);
-  } else {
-    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
-  }
+// movements.forEach(function (movement, i, arr) {
+//   if (movement > 0) {
+//     console.log(`Movement ${i + 1}: You deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+//   }
+// });
+
+currencies.forEach(function (v, k, m) {
+  console.log(`${k}: ${v}`);
+});
+
+const currenciesSet = new Set(['USD', 'EUR', 'EUR', 'GBP']);
+console.log(currenciesSet);
+currenciesSet.forEach(function (v, _, s) {
+  console.log(`${v}`); // k and v are the same for sets
 });
 
 /*
