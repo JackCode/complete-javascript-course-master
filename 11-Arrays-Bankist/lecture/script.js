@@ -79,17 +79,32 @@ console.log(letters.join(' - '));
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const eurToUsd = 1.1;
-const movementsUsd = movements.map((movement) => movement * eurToUsd);
+// const eurToUsd = 1.1;
+// const movementsUsd = movements.map((movement) => movement * eurToUsd);
 
-console.log(movements);
-console.log(movementsUsd);
+// console.log(movements);
+// console.log(movementsUsd);
 
-const movementDescriptions = movements.map(
-  (movement, i, arr) =>
-    `Movement ${i + 1}: You ${
-      movement > 0 ? "deposited" : "withdrew"
-    } ${Math.abs(movement)}`
+// const movementDescriptions = movements.map(
+//   (movement, i, arr) =>
+//     `Movement ${i + 1}: You ${
+//       movement > 0 ? "deposited" : "withdrew"
+//     } ${Math.abs(movement)}`
+// );
+
+// console.log(movementDescriptions);
+
+const deposits = movements.filter((mov) => mov > 0);
+const withdrawals = movements.filter((mov) => mov < 0);
+console.log(deposits);
+console.log(withdrawals);
+
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+
+// get max value with reduce
+const maximum = movements.reduce(
+  (max, curr) => (curr > max ? curr : max),
+  -Infinity
 );
-
-console.log(movementDescriptions);
+console.log(maximum);
