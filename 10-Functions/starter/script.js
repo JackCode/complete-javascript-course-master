@@ -182,14 +182,25 @@
 // console.log(notPrivate);
 
 /** CLOSURES */
+// 'sentence is cool';
+// 'single quote strings are nice'`string with back ticks are ni`;
 
-// const secureBooking = function () {
-//   let passengerCount = 0;
+// let passengerCount = 10;
+
+// const firstButton = function () {
+//   // let passengerCount = 0;
 
 //   return function () {
 //     console.log(`${++passengerCount} passengers`);
 //   };
 // };
+
+// const secondButton = firstButton();
+// secondButton();
+// secondButton();
+// secondButton();
+
+// secureBooking();
 
 // const booker = secureBooking();
 // console.dir(booker);

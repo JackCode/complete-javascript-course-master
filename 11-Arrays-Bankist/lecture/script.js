@@ -76,3 +76,20 @@ console.log(letters.join(' - '));
 
 // console.log('Jackson'.at(0));
 // console.log('Jackson'.at(-1));
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+const movementsUsd = movements.map((movement) => movement * eurToUsd);
+
+console.log(movements);
+console.log(movementsUsd);
+
+const movementDescriptions = movements.map(
+  (movement, i, arr) =>
+    `Movement ${i + 1}: You ${
+      movement > 0 ? "deposited" : "withdrew"
+    } ${Math.abs(movement)}`
+);
+
+console.log(movementDescriptions);
