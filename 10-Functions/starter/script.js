@@ -165,18 +165,71 @@
 
 //** IMMEDIATELY INVOKED FUNCTION EXPRESSIONS (IIFE) */
 
-(function () {
-  console.log('This will never run again!');
-  const isPrivate = 23;
-})();
-// console.log(isPrivate); // no bueno
+// (function () {
+//   console.log('This will never run again!');
+//   const isPrivate = 23;
+// })();
+// // console.log(isPrivate); // no bueno
 
-// (() => console.log('This will never run again!'))();
+// // (() => console.log('This will never run again!'))();
 
-{
-  const isPrivate = 23;
-  var notPrivate = 42;
-}
+// {
+//   const isPrivate = 23;
+//   var notPrivate = 42;
+// }
 
-// console.log(isPrivate);
-console.log(notPrivate);
+// // console.log(isPrivate);
+// console.log(notPrivate);
+
+/** CLOSURES */
+
+// const secureBooking = function () {
+//   let passengerCount = 0;
+
+//   return function () {
+//     console.log(`${++passengerCount} passengers`);
+//   };
+// };
+
+// const booker = secureBooking();
+// console.dir(booker);
+// booker();
+// booker();
+// booker();
+
+// let f;
+// const g = function () {
+//   const a = 23;
+//   f = function () {
+//     console.log(a * 2);
+//   };
+// };
+
+// const h = function () {
+//   const b = 777;
+//   f = function () {
+//     console.log(b * 2);
+//   };
+// };
+
+// g();
+// f();
+// console.dir(f);
+
+// h();
+// f();
+// console.dir(f);
+
+// const boardPassengers = function (n, wait) {
+//   const perGroup = n / 3;
+
+//   setTimeout(function () {
+//     console.log(`We are now boarding all ${n} passengers.`);
+//     console.log(`There are 3 groups of ${perGroup} passengers.`);
+//   }, wait * 1000);
+
+//   console.log(`Will start boarding in ${wait} seconds`);
+// };
+
+// const perGroup = 1000;
+// boardPassengers(180, 3);
