@@ -103,62 +103,80 @@
 
 /** APPLY AND CALL FUNCTIONS */
 
-const lufthansa = {
-  airline: 'Lufthansa',
-  iataCode: 'LM',
-  bookings: [],
-  book(flightNum, name) {
-    console.log(
-      `${name} booked a seat on ${this.airline} flight #${flightNum}`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-  },
-};
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LM',
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight #${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
 
-lufthansa.book(239, 'Jackson Weber');
-lufthansa.book(635, 'Patrick Cordero');
-console.log(lufthansa.bookings);
+// lufthansa.book(239, 'Jackson Weber');
+// lufthansa.book(635, 'Patrick Cordero');
+// console.log(lufthansa.bookings);
 
-const eurowings = {
-  airline: 'Eurowings',
-  iataCode: 'EW',
-  bookings: [],
-};
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
 
-const book = lufthansa.book;
-// book(23, 'Sarah Williams'); // Doesn't work
-book.call(eurowings, 23, 'Sarah Williams');
-console.log(eurowings);
+// const book = lufthansa.book;
+// // book(23, 'Sarah Williams'); // Doesn't work
+// book.call(eurowings, 23, 'Sarah Williams');
+// console.log(eurowings);
 
-/** BIND METHOD */
+// /** BIND METHOD */
 
-const bookEW = book.bind(eurowings);
-bookEW(420, 'Patrick Cordero');
+// const bookEW = book.bind(eurowings);
+// bookEW(420, 'Patrick Cordero');
 
-const bookEW314 = book.bind(eurowings, 314);
-bookEW314('Jackson Weber');
-bookEW314('Amelia Floehr');
+// const bookEW314 = book.bind(eurowings, 314);
+// bookEW314('Jackson Weber');
+// bookEW314('Amelia Floehr');
 
-// with event listeners
-lufthansa.planes = 300;
-lufthansa.buyPlane = function () {
-  console.log(this);
-  this.planes++;
-  console.log(this.planes);
-};
+// // with event listeners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+//   this.planes++;
+//   console.log(this.planes);
+// };
 
-document
-  .querySelector('.buy')
-  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
 
-// Partial application
-const addTax = (rate, value) => value + value * rate;
-console.log(addTax(0.1, 200));
+// // Partial application
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
 
-const addSalesTax = addTax.bind(null, 0.06);
-const calcTotal = addTax.bind(null, 0.1236);
-console.log(calcTotal(169));
+// const addSalesTax = addTax.bind(null, 0.06);
+// const calcTotal = addTax.bind(null, 0.1236);
+// console.log(calcTotal(169));
 
-const tax = function () {
-  return function () {};
-};
+// const tax = function () {
+//   return function () {};
+// };
+
+//** IMMEDIATELY INVOKED FUNCTION EXPRESSIONS (IIFE) */
+
+(function () {
+  console.log('This will never run again!');
+  const isPrivate = 23;
+})();
+// console.log(isPrivate); // no bueno
+
+// (() => console.log('This will never run again!'))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 42;
+}
+
+// console.log(isPrivate);
+console.log(notPrivate);
