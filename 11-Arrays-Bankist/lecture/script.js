@@ -94,17 +94,24 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // console.log(movementDescriptions);
 
-const deposits = movements.filter((mov) => mov > 0);
-const withdrawals = movements.filter((mov) => mov < 0);
-console.log(deposits);
-console.log(withdrawals);
+// const deposits = movements.filter((mov) => mov > 0);
+// const withdrawals = movements.filter((mov) => mov < 0);
+// console.log(deposits);
+// console.log(withdrawals);
 
-const balance = movements.reduce((acc, cur) => acc + cur, 0);
-console.log(balance);
+// const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// console.log(balance);
 
-// get max value with reduce
-const maximum = movements.reduce(
-  (max, curr) => (curr > max ? curr : max),
-  -Infinity
-);
-console.log(maximum);
+// // get max value with reduce
+// const maximum = movements.reduce(
+//   (max, curr) => (curr > max ? curr : max),
+//   -Infinity
+// );
+// console.log(maximum);
+
+const eurToUsd = 1.1;
+const totalDepUsd = movements
+  .filter((mov) => mov > 0)
+  .map((mov) => mov * eurToUsd)
+  .reduce((acc, cur) => acc + cur, 0);
+console.log(totalDepUsd);
