@@ -103,7 +103,6 @@ const calcDisplaySummary = function (movements) {
     .filter(mov => mov > 0)
     .map(dep => dep * 0.012)
     .filter((int, _, arr) => {
-      console.log(arr);
       return int >= 1;
     })
     .reduce((acc, cur) => acc + cur, 0);
@@ -120,4 +119,6 @@ const createUsernames = function (accts) {
   });
 };
 createUsernames(accounts);
-console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
