@@ -343,15 +343,30 @@ btnSort.addEventListener('click', function (e) {
 //   });
 // });
 
-// Numeric separator
-const diameter = 287_460_000_000;
-console.log(diameter);
+// // Numeric separator
+// const diameter = 287_460_000_000;
+// console.log(diameter);
 
-const price = 345_99;
-console.log(price);
+// const price = 345_99;
+// console.log(price);
 
-const PI = 3.1415;
-console.log(PI);
+// const PI = 3.1415;
+// console.log(PI);
 
-console.log(Number('230_000'.replace('_', '')));
-console.log(Number.parseInt('230_000'.replace('_', '')));
+// console.log(Number('230_000'.replace('_', '')));
+// console.log(Number.parseInt('230_000'.replace('_', '')));
+
+// console.log(2 ** 53 - 1);
+// console.log(Number.MAX_SAFE_INTEGER);
+// console.log(2 ** 53 + 1);
+// console.log(2 ** 53 + 2);
+// console.log(2 ** 53 + 3);
+// console.log(2 ** 53 + 4);
+
+// console.log(156146515618651351685165489165198165n);
+// console.log(BigInt(156146515618651351685165489165198165));
+// console.log(BigInt(156146515618651351685165489165198165n));
+
+// console.log(10000n + 10000n);
+// // console.log(465456416548618165165468416351n ** 15165153148651356415431531n);
+// console.log(2 ** 65);
