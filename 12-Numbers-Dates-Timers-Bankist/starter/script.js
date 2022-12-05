@@ -315,3 +315,43 @@ btnSort.addEventListener('click', function (e) {
 
 // console.log((2.345).toFixed(2));
 // console.log(+(2.345).toFixed(2));
+
+// console.log(5 % 2);
+// console.log(8 % 3);
+// console.log(-8 % 3);
+
+// console.log(!Boolean(6 % 2));
+// console.log(!Boolean(5 % 2));
+
+// const isEven = n => !Boolean(n % 2);
+// console.log(isEven(0));
+// console.log(isEven(1));
+// console.log(isEven(-1));
+// console.log(isEven(2));
+// console.log(isEven(-2));
+// console.log(isEven(Infinity));
+// console.log(isEven(-Infinity));
+
+// labelBalance.addEventListener('click', function () {
+//   [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+//     if (i % 2 === 0) {
+//       row.style.backgroundColor = 'orangered';
+//     }
+//     if (i % 3 === 0) {
+//       row.style.backgroundColor = 'blue';
+//     }
+//   });
+// });
+
+// Numeric separator
+const diameter = 287_460_000_000;
+console.log(diameter);
+
+const price = 345_99;
+console.log(price);
+
+const PI = 3.1415;
+console.log(PI);
+
+console.log(Number('230_000'.replace('_', '')));
+console.log(Number.parseInt('230_000'.replace('_', '')));
