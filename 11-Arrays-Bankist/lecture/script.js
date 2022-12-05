@@ -120,10 +120,18 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(movements);
 // console.log(firstWithdrawal);
 
-const deposit = (move) => move > 0;
+// const deposit = (move) => move > 0;
 
-console.log(movements.some(deposit));
-console.log(movements.some((mov) => mov > 5000));
+// console.log(movements.some(deposit));
+// console.log(movements.some((mov) => mov > 5000));
 
-console.log(movements.every(deposit));
-console.log([500, 300, 200].every(deposit));
+// console.log(movements.every(deposit));
+// console.log([500, 300, 200].every(deposit));
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[[1], 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(1));
+console.log(arrDeep.flat(2));
+console.log(arrDeep.flat(3));

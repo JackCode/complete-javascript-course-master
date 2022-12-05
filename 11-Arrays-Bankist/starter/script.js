@@ -123,6 +123,13 @@ const updateUI = function (account) {
   calcDisplaySummary(account);
 };
 
+const overallBalance = accounts
+  .flatMap(acct => acct.movements)
+  // .map(acct => acct.movements)
+  // .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
 // Event Handlers
 let currentAccount;
 
