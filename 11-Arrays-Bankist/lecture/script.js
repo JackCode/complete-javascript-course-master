@@ -116,6 +116,9 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   .reduce((acc, cur) => acc + cur, 0);
 // console.log(totalDepUsd);
 
-const firstWithdrawal = movements.find((mov) => mov < 0);
-console.log(movements);
-console.log(firstWithdrawal);
+// const firstWithdrawal = movements.find((mov) => mov < 0);
+// console.log(movements);
+// console.log(firstWithdrawal);
+
+console.log(movements.some((mov) => mov > 0));
+console.log(movements.some((mov) => mov > 5000));
