@@ -186,3 +186,16 @@ btnClose.addEventListener('click', function (e) {
 
   inputClosePin.value = inputCloseUsername.value = '';
 });
+
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const loanAmount = Number(inputLoanAmount.value);
+  if (
+    loanAmount > 0 &&
+    currentAccount.movements.some(mov => loanAmount < 0.1 * mov)
+  ) {
+    currentAccount.movements.push(loanAmount);
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});

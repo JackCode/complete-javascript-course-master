@@ -120,5 +120,10 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(movements);
 // console.log(firstWithdrawal);
 
-console.log(movements.some((mov) => mov > 0));
+const deposit = (move) => move > 0;
+
+console.log(movements.some(deposit));
 console.log(movements.some((mov) => mov > 5000));
+
+console.log(movements.every(deposit));
+console.log([500, 300, 200].every(deposit));
