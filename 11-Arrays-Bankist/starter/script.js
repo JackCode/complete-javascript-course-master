@@ -208,3 +208,15 @@ btnSort.addEventListener('click', e => {
   sorted = !sorted;
   displayMovements(currentAccount.movements, sorted);
 });
+
+const movementsFromUI = Array.from(
+  document.querySelectorAll('.movements__value')
+);
+console.log(movementsFromUI);
+
+labelBalance.addEventListener('click', function () {
+  const movementsFromUI = Array.from(
+    document.querySelectorAll('.movements__value')
+  );
+  console.log(movementsFromUI);
+});

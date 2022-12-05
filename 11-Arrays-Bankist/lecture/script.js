@@ -136,11 +136,33 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(arrDeep.flat(2));
 // console.log(arrDeep.flat(3));
 
-const owners = ["Jonas", "Zach", "Adam", "Martha"];
-console.log(owners.sort());
-console.log(owners);
+// const owners = ["Jonas", "Zach", "Adam", "Martha"];
+// console.log(owners.sort());
+// console.log(owners);
 
-console.log(movements);
-console.log(movements.sort()); // Based on string values
+// console.log(movements);
+// console.log(movements.sort()); // Based on string values
 
-console.log(movements.sort((a, b) => a - b));
+// console.log(movements.sort((a, b) => a - b));
+
+const x = new Array(4);
+console.log(x);
+// x.fill(5);
+// x.fill(0, 3, 5);
+console.log(x);
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+// const nRolls = 10000000;
+// const randomRolls = Array.from(
+//   { length: nRolls },
+//   () => Math.trunc(Math.random() * 6) + 1
+// );
+// console.log(randomRolls);
+
+// const avgRoll = randomRolls.reduce((acc, cur) => acc + cur) / nRolls;
+// console.log(avgRoll);
