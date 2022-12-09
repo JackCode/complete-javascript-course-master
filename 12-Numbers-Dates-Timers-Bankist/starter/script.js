@@ -201,14 +201,39 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLockoutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const seconds = String(time % 60).padStart(2, 0);
+    // For each call, print remaining time
+    labelTimer.textContent = `${min}:${seconds}`;
+
+    // When time is at 0, stop timer and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      containerApp.style.opacity = 0;
+      labelWelcome.textContent = `Log in to get started`;
+    }
+
+    time--;
+  };
+  // Set time to 5 minutes
+  let time = 120;
+
+  // Call timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 // FAKE LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 // Experimenting I8N API
 const now = new Date();
@@ -222,7 +247,7 @@ btnLogin.addEventListener('click', function (e) {
   );
   console.log(currentAccount);
 
-  if (true /*currentAccount?.pin === +inputLoginPin.value*/) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -255,6 +280,13 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // Start Lockout Timer
+    if (timer) {
+      clearInterval(timer);
+    }
+
+    timer = startLockoutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -284,6 +316,8 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+    clearInterval(timer);
+    timer = startLockoutTimer();
   }
 });
 
@@ -293,14 +327,18 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
+  clearInterval(timer);
+  timer = startLockoutTimer();
 });
 
 btnClose.addEventListener('click', function (e) {
@@ -512,3 +550,25 @@ btnSort.addEventListener('click', function (e) {
 //   new Intl.NumberFormat('nl-NL', options).format(num)
 // );
 // console.log('Syria: ', new Intl.NumberFormat('ar-SY', options).format(num));
+
+// const ingredients = ['olives', 'spinach'];
+
+// const pizzaTimer = setTimeout(
+//   (ing1, ing2) =>
+//     console.log(`Here is your pizza  with ${ing1} and ${ing2} 🍕`),
+//   3000,
+//   ...ingredients
+// );
+// console.log('Waiting...');
+
+// if (ingredients.includes('spinach')) {
+//   clearTimeout(pizzaTimer);
+// }
+
+// setInterval(function () {
+//   const now = new Date();
+//   const hours = now.getHours();
+//   const minutes = now.getMinutes();
+//   const seconds = now.getSeconds();
+//   console.log(`${hours}:${minutes}:${seconds}`);
+// }, 1000);
