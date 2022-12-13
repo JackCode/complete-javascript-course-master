@@ -123,3 +123,19 @@ btnScrollTo.addEventListener('click', function (e) {
 // // Classes
 // logo.classList.add();
 // logo.classList.remove();
+
+const h1 = document.querySelector('h1');
+
+const displayAlert = function (e) {
+  alert('addEventListener: Great you are reading the heading.');
+
+  // h1.removeEventListener('mouseenter', displayAlert);
+};
+
+h1.addEventListener('mouseenter', displayAlert);
+
+setTimeout(() => h1.removeEventListener('mouseenter', displayAlert), 3000);
+
+// h1.onmouseenter = function (e) {
+//   alert('onMouseEnter: Great you are reading the heading.');
+// };
