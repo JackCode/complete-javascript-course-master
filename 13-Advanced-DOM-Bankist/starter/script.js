@@ -1,12 +1,17 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
+////////////////////////////////////////////////////////////////////////////////
+// Global Element Selection
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+const navLinks = document.querySelector('.nav__links');
+
+////////////////////////////////////////////////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -30,8 +35,8 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
+////////////////////////////////////////////////////////////////////////////////
+// "Learn More" Scrolling
 
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
@@ -49,7 +54,31 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+////////////////////////////////////////////////////////////////////////////////
+// Navigation Bar Smooth Scrolling
+
+// INEFFICIENT - USE EVENT DELEGATION
+// document.querySelectorAll('.nav__link').forEach(function (link) {
+//   link.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+navLinks.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
 // LECTURES
+////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -143,32 +172,34 @@ btnScrollTo.addEventListener('click', function (e) {
 // Event propogation
 
 // random color = rgb(255, 255, 255)
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-const randomColor = () => `rgb(
-  ${randomInt(0, 255)},
-  ${randomInt(0, 255)},
-  ${randomInt(0, 255)}
-)`;
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
+// const randomColor = () => `rgb(
+//   ${randomInt(0, 255)},
+//   ${randomInt(0, 255)},
+//   ${randomInt(0, 255)}
+// )`;
 
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('Link', e.target, e.currentTarget);
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('Link', e.target, e.currentTarget);
 
-  // Stop propagation
-  // e.stopPropagation(); // Usually not a good idea
-});
+//   // Stop propagation
+//   // e.stopPropagation(); // Usually not a good idea
+// });
 
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('Links Event', e.target, e.currentTarget);
-});
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('Links Event', e.target, e.currentTarget);
+// });
 
-document.querySelector('.nav').addEventListener(
-  'click',
-  function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log(' Event', e.target, e.currentTarget);
-  },
-  false // true = listen to event on capture phase instead of bubbling phase (capturing)
-);
+// document.querySelector('.nav').addEventListener(
+//   'click',
+//   function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log(' Event', e.target, e.currentTarget);
+//   },
+//   false // true = listen to event on capture phase instead of bubbling phase (capturing)
+// );
+
+// Event delegation
