@@ -13,6 +13,7 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 const nav = document.querySelector('.nav');
+const header = document.querySelector('.header');
 
 ////////////////////////////////////////////////////////////////////////////////
 // Modal window
@@ -105,8 +106,6 @@ tabsContainer.addEventListener('click', function (e) {
 ////////////////////////////////////////////////////////////////////////////////
 // Menu Fade Animation
 const handleHover = function (e) {
-  console.log(this);
-
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
@@ -126,18 +125,48 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 
 ////////////////////////////////////////////////////////////////////////////////
 // Sticky Navigation
-const s1coords = section1.getBoundingClientRect();
-console.log(s1coords.top);
-window.addEventListener('scroll', function () {
-  console.log(window.scrollY);
 
-  if (window.scrollY > s1coords.top) {
+// no good for performance
+// const s1coords = section1.getBoundingClientRect();
+// console.log(s1coords.top);
+// window.addEventListener('scroll', function () {
+//   console.log(window.scrollY);
+
+//   if (window.scrollY > s1coords.top) {
+//     nav.classList.add('sticky');
+//   } else {
+//     nav.classList.remove('sticky');
+//   }
+// });
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) {
     nav.classList.add('sticky');
   } else {
     nav.classList.remove('sticky');
   }
-});
+};
 
+const navHeight = nav.getBoundingClientRect().height;
+const obsOptions = {
+  root: null, // intersecting viewport when null
+  threshold: 0, // percentage of intersection
+  rootMargin: `-${navHeight}px`,
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, obsOptions);
+headerObserver.observe(header);
+
+/*
+
+
+
+
+
+
+*/
 // LECTURES
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
