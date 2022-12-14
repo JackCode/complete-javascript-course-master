@@ -15,7 +15,12 @@ const tabsContent = document.querySelectorAll('.operations__content');
 const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
-const imgTargets = document.querySelectorAll('img[data-src');
+const imgTargets = document.querySelectorAll('img[data-src]');
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
 ////////////////////////////////////////////////////////////////////////////////
 // Modal window
 
@@ -163,21 +168,21 @@ headerObserver.observe(header);
 ////////////////////////////////////////////////////////////////////////////////
 // Section revealers
 
-const revealSection = function (entries, observer) {
-  const [entry] = entries;
-  if (!entry.isIntersecting) return;
-  entry.target.classList.remove('section--hidden');
-  observer.unobserve(entry.target);
-};
+// const revealSection = function (entries, observer) {
+//   const [entry] = entries;
+//   if (!entry.isIntersecting) return;
+//   entry.target.classList.remove('section--hidden');
+//   observer.unobserve(entry.target);
+// };
 
-const sectionObserver = new IntersectionObserver(revealSection, {
-  root: null,
-  threshold: 0.15,
-});
-allSections.forEach(function (section) {
-  sectionObserver.observe(section);
-  section.classList.add('section--hidden');
-});
+// const sectionObserver = new IntersectionObserver(revealSection, {
+//   root: null,
+//   threshold: 0.15,
+// });
+// allSections.forEach(function (section) {
+//   sectionObserver.observe(section);
+//   section.classList.add('section--hidden');
+// });
 
 ////////////////////////////////////////////////////////////////////////////////
 // Lazy loading images
@@ -199,6 +204,47 @@ const imgObserver = new IntersectionObserver(loadImage, {
   rootMargin: '200px',
 });
 imgTargets.forEach(img => imgObserver.observe(img));
+
+////////////////////////////////////////////////////////////////////////////////
+// Slider
+
+// // For debugging
+// slider.style.transform = 'scale(0.4) translatex(-1200px)';
+// slider.style.overflow = 'visible';
+// // ^^ For debugging
+
+let curSlide = 0;
+const maxSlide = slides.length;
+
+const goToSlide = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
+};
+
+goToSlide(0);
+
+const nextSlide = function () {
+  if (curSlide === maxSlide - 1) {
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
+
+  goToSlide(curSlide);
+};
+
+const prevSlide = function () {
+  if (curSlide === 0) {
+    curSlide = maxSlide - 1;
+  } else {
+    curSlide--;
+  }
+  goToSlide(curSlide);
+};
+
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', prevSlide);
 
 /*
 
