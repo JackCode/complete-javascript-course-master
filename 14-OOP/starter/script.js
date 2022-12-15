@@ -82,8 +82,8 @@ console.dir(x => x + 1);
 // ES6 Classes (not the same as classes in other OOP languages)
 // Syntactic sugar to look similar
 class PersonCl {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
@@ -91,20 +91,56 @@ class PersonCl {
   calcAge() {
     console.log(new Date().getFullYear() - this.birthYear);
   }
+
+  get age() {
+    return new Date().getFullYear() - this.birthYear;
+  }
+
+  set fullName(n) {
+    if (n.includes(' ')) {
+      this._fullName = n;
+    } else {
+      alert(`${n} is not a full name!`);
+    }
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
 }
 
-const jessica = new PersonCl('Jessica', 1996);
+const jessica = new PersonCl('Jessica Davis', 1996);
 console.log(jessica);
 jessica.calcAge();
+console.log(jessica.age);
 
 console.log(jessica.__proto__ === PersonCl.prototype); // true
 
 PersonCl.prototype.greet = function () {
-  console.log(`Hey, ${this.firstName}!`);
+  console.log(`Hey, ${this.fullName}!`);
 };
 
 jessica.greet();
 
+const walter = new Person('Walter', 1908);
+
 // 1. Classes are NOT hoisted
 // 2. Classes are first-class citizens
 // 3. Classes are executed in strict mode (even if not declared in entire script)
+
+const account = {
+  owner: 'jonas',
+  movements: [200, -400, 432, 900],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(movement) {
+    this.movements.push(movement);
+  },
+};
+
+console.log(account.latest);
+account.latest = 50;
+console.log(account.movements);
