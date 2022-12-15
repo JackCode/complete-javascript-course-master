@@ -366,54 +366,79 @@ GOOD LUCK 😀
 // tesla.chargeBattery(90);
 // tesla.accelerate();
 
-class PersonCl {
-  constructor(fullName, birthYear) {
-    this.fullName = fullName;
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
+
+//   // Added to .prototype, not actual 'class'
+//   calcAge() {
+//     console.log(new Date().getFullYear() - this.birthYear);
+//   }
+
+//   get age() {
+//     return new Date().getFullYear() - this.birthYear;
+//   }
+
+//   set fullName(n) {
+//     if (n.includes(' ')) {
+//       this._fullName = n;
+//     } else {
+//       alert(`${n} is not a full name!`);
+//     }
+//   }
+
+//   get fullName() {
+//     return this._fullName;
+//   }
+
+//   // Static methods
+//   static hey() {
+//     console.log('Hey there from the class 👋🏼');
+//   }
+// }
+
+// class StudentCl extends PersonCl {
+//   constructor(fullName, birthYear, course) {
+//     super(fullName, birthYear); // Must always be called first to create 'this' keyword
+//     this.course = course;
+//   }
+
+//   introduce() {
+//     console.log(`My name is ${this.fullName} and I study ${this.course}.`);
+//   }
+
+//   calcAge() {
+//     console.log(`I'm a young student.`);
+//   }
+// }
+
+// const gary = new StudentCl('Gary Woods', 1985, 'math');
+// gary.introduce();
+// gary.calcAge();
+
+const PersonProto = {
+  calcAge() {
+    console.log(`Age: ${new Date().getFullYear() - this.birthYear}`);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
     this.birthYear = birthYear;
-  }
+  },
+};
 
-  // Added to .prototype, not actual 'class'
-  calcAge() {
-    console.log(new Date().getFullYear() - this.birthYear);
-  }
+const steven = Object.create(PersonProto);
 
-  get age() {
-    return new Date().getFullYear() - this.birthYear;
-  }
+const StudentProto = Object.create(PersonProto);
 
-  set fullName(n) {
-    if (n.includes(' ')) {
-      this._fullName = n;
-    } else {
-      alert(`${n} is not a full name!`);
-    }
-  }
+const jay = Object.create(StudentProto);
 
-  get fullName() {
-    return this._fullName;
-  }
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
 
-  // Static methods
-  static hey() {
-    console.log('Hey there from the class 👋🏼');
-  }
-}
-
-class StudentCl extends PersonCl {
-  constructor(fullName, birthYear, course) {
-    super(fullName, birthYear); // Must always be called first to create 'this' keyword
-    this.course = course;
-  }
-
-  introduce() {
-    console.log(`My name is ${this.fullName} and I study ${this.course}.`);
-  }
-
-  calcAge() {
-    console.log(`I'm a young student.`);
-  }
-}
-
-const gary = new StudentCl('Gary Woods', 1985, 'math');
-gary.introduce();
-gary.calcAge();
+jay.init('Jay', 2010, 'history');
+jay.calcAge();
