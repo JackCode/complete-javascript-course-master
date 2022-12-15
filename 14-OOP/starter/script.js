@@ -17,7 +17,7 @@ console.log(jackson);
 // new KEYWORD
 // 1. New {} is created
 // 2. Function is called; this keyword is set to new empty object created in step 1
-// 3. Newly created object is linked to prototype
+// 3. Newly created object is linked to prototype (sets __proto__ to prototype property of constructor function)
 // 4. Function automatically returns object from step 1.
 
 const matilda = new Person('Matilda', 2017);
@@ -28,3 +28,29 @@ const jay = 'Jay';
 
 console.log(jackson instanceof Person);
 console.log(jay instanceof Person);
+
+// Prototypes
+// Any object always has access to methods and properties of prototype
+console.log(Person.prototype);
+
+Person.prototype.calcAge = function () {
+  console.log(new Date().getFullYear() - this.birthYear);
+};
+
+jackson.calcAge(); // We have access because of prototypal inheritance
+matilda.calcAge();
+patrick.calcAge();
+
+// Person.prototype is not the prototype of Person, but of the linked objects
+console.log(jackson.__proto__);
+console.log(jackson.__proto__ === Person.prototype);
+console.log(Person.__proto__ === Person.prototype);
+console.log(Person.prototype.isPrototypeOf(jackson));
+console.log(Person.prototype.isPrototypeOf(Person));
+
+Person.prototype.species = 'Homo Sapiens'; // Access to property but not part of instance
+console.log(jackson, matilda, patrick);
+console.log(jackson.species);
+
+console.log(jackson.hasOwnProperty('firstName')); // true
+console.log(jackson.hasOwnProperty('species')); // false
