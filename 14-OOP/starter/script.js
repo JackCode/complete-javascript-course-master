@@ -212,3 +212,18 @@ GOOD LUCK 😀
 // car2.accelerate();
 // car2.brake();
 // car2.brake();
+
+// Object.create
+const PersonProto = {
+  calcAge() {
+    console.log(new Date().getFullYear() - this.birthYear);
+  },
+
+  init(firstName, birthYear)
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 2002;
+steven.calcAge();
