@@ -11,8 +11,15 @@ const Person = function (firstName, birthYear) {
   // };
 };
 
+Person.hey = function () {
+  console.log('Hey There 👋🏼');
+};
+
 const jackson = new Person('Jackson', 1991);
 console.log(jackson);
+
+Person.hey();
+// jackson.hey(); // Error
 
 // new KEYWORD
 // 1. New {} is created
@@ -107,6 +114,11 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  // Static methods
+  static hey() {
+    console.log('Hey there from the class 👋🏼');
+  }
 }
 
 const jessica = new PersonCl('Jessica Davis', 1996);
@@ -144,3 +156,59 @@ const account = {
 console.log(account.latest);
 account.latest = 50;
 console.log(account.movements);
+
+///////////////////////////////////////
+// Coding Challenge #1
+
+/* 
+1. Use a constructor function to implement a Car. A car has a make and a speed property. The speed property is the current speed of the car in km/h;
+2. Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console;
+3. Implement a 'brake' method that will decrease the car's speed by 5, and log the new speed to the console;
+4. Create 2 car objects and experiment with calling 'accelerate' and 'brake' multiple times on each of them.
+
+DATA CAR 1: 'BMW' going at 120 km/h
+DATA CAR 2: 'Mercedes' going at 95 km/h
+
+GOOD LUCK 😀
+*/
+
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = speed; // current speed in km/h
+// };
+
+// Car.prototype.accelerate = function () {
+//   this.speed += 10;
+//   this.printSpeed();
+// };
+
+// Car.prototype.brake = function () {
+//   this.speed -= 5;
+//   this.printSpeed();
+// };
+
+// Car.prototype.printSpeed = function () {
+//   console.log(`The ${this.make}'s current speed: ${this.speed} km/h`);
+// };
+
+// const car1 = new Car('BMW', 120);
+// car1.printSpeed();
+
+// const car2 = new Car('Mercedes', 95);
+// car2.printSpeed();
+
+// car1.accelerate();
+// car1.accelerate();
+// car1.accelerate();
+// car1.brake();
+// car1.accelerate();
+// car1.brake();
+// car1.brake();
+
+// car2.accelerate();
+// car2.accelerate();
+// car2.accelerate();
+// car2.brake();
+// car2.accelerate();
+// car2.brake();
+// car2.brake();
