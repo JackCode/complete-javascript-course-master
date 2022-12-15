@@ -54,3 +54,27 @@ console.log(jackson.species);
 
 console.log(jackson.hasOwnProperty('firstName')); // true
 console.log(jackson.hasOwnProperty('species')); // false
+
+console.log(jackson.__proto__);
+// Object.prototype
+console.log(jackson.__proto__.__proto__);
+console.log(jackson.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [1, 2, 1, 2, 2, 2, 7, 5, 5, 6, 3, 4, 5]; // new Array === []
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+// You can do this, but bad idea to extend functionality of built in types
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(h1);
+
+console.dir(x => x + 1);
