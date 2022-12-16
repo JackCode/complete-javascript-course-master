@@ -87,8 +87,13 @@ class App {
   #zoomLevel = 13;
 
   constructor() {
+    // Get user position
     this.#getPosition();
 
+    // Get workouts from storage
+    this.#getLocalStorage();
+
+    // Attach event handlers
     form.addEventListener('submit', this.#newWorkout.bind(this));
     inputType.addEventListener('change', this.#toggleElevationField);
     containerWorkouts.addEventListener('click', this.#moveToPopup.bind(this));
@@ -118,6 +123,7 @@ class App {
     }).addTo(this.#map);
 
     this.#map.on('click', this.#showForm.bind(this));
+    this.#workouts.forEach(workout => this.#renderWorkoutMarker(workout));
   }
 
   #showForm(mapE) {
@@ -210,10 +216,13 @@ class App {
     // hide form &
     // Clear input fields
     this.#hideForm();
+
+    // Set local storage to all workouts
+    this.#setLocalStorage();
   }
 
   #renderWorkoutMarker(workout) {
-    console.log(workout.getType());
+    console.log(workout.type);
     L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
@@ -222,7 +231,7 @@ class App {
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: `${workout.getType()}-popup`,
+          className: `${workout.type}-popup`,
         })
       )
       .setPopupContent(
@@ -283,6 +292,20 @@ class App {
 
     // Inserts HTML after form in list
     form.insertAdjacentHTML('afterend', html);
+  }
+
+  #setLocalStorage() {
+    localStorage.setItem('workout', JSON.stringify(this.#workouts));
+  }
+
+  #getLocalStorage() {
+    const data = JSON.parse(localStorage.getItem('workout'));
+    console.log(data);
+
+    if (!data) return;
+
+    this.#workouts = data;
+    this.#workouts.forEach(workout => this.#renderWorkoutListItem(workout));
   }
 }
 
