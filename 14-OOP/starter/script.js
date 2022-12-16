@@ -443,12 +443,23 @@ GOOD LUCK 😀
 // jay.init('Jay', 2010, 'history');
 // jay.calcAge();
 
+// public fields
+// private fields
+// public methods
+// private methods
+
 class Account {
+  // Public fields (on instances, not prototype)
+  locale = navigator.language;
+
+  // Private fields
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
-    this.movements = [];
+    this.#pin = pin;
     this.locale = navigator.language;
 
     console.log(`Thanks for opening and account, ${owner}.`);
@@ -456,7 +467,7 @@ class Account {
 
   // Public interface (API)
   deposit(amount) {
-    this.movements.push(amount);
+    this.#movements.push(amount);
   }
 
   withdraw(amount) {
@@ -464,12 +475,12 @@ class Account {
   }
 
   // don't want this in public interface
-  approveLoan(amount) {
+  #approveLoan(amount) {
     return true;
   }
 
   requestLoan(amount) {
-    if (this.approveLoan) {
+    if (this.#approveLoan) {
       this.deposit(amount);
       console.log('Loan Approved');
     }
