@@ -468,10 +468,12 @@ class Account {
   // Public interface (API)
   deposit(amount) {
     this.#movements.push(amount);
+    return this;
   }
 
   withdraw(amount) {
     this.deposit(-amount);
+    return this;
   }
 
   // don't want this in public interface
@@ -484,6 +486,7 @@ class Account {
       this.deposit(amount);
       console.log('Loan Approved');
     }
+    return this;
   }
 }
 
@@ -497,4 +500,8 @@ console.log(acct1);
 acct1.deposit(250);
 acct1.withdraw(140);
 
+console.log(acct1);
+
+// Chaining
+acct1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
 console.log(acct1);
