@@ -2,7 +2,7 @@
 
 class Workout {
   date = new Date();
-  id = Math.trunc(Math.random() * 9999999) + 1;
+  id = Math.trunc(Math.random() * 9999999) + 1 + '';
 
   constructor(coords, distance, duration) {
     this.coords = coords; // [lat, long]
@@ -84,13 +84,14 @@ class App {
   #map;
   #mapEvent;
   #workouts = [];
+  #zoomLevel = 13;
 
   constructor() {
     this.#getPosition();
 
     form.addEventListener('submit', this.#newWorkout.bind(this));
-
     inputType.addEventListener('change', this.#toggleElevationField);
+    containerWorkouts.addEventListener('click', this.#moveToPopup.bind(this));
   }
 
   #getPosition() {
@@ -109,7 +110,7 @@ class App {
   #loadMap(position) {
     const coords = [position.coords.latitude, position.coords.longitude];
 
-    this.#map = L.map('map').setView(coords, 13);
+    this.#map = L.map('map').setView(coords, this.#zoomLevel);
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot//{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution:
@@ -140,6 +141,23 @@ class App {
   #toggleElevationField() {
     inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
     inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
+  }
+
+  #moveToPopup(e) {
+    const workoutEl = e.target.closest('.workout');
+
+    if (!workoutEl) return;
+
+    const workout = this.#workouts.find(
+      work => work.id === workoutEl.dataset.id
+    );
+
+    this.#map.setView(workout.coords, 14, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
   }
 
   #newWorkout(e) {
@@ -215,7 +233,7 @@ class App {
 
   #renderWorkoutListItem(workout) {
     let html = `
-    <li class="workout workout--${workout.type}" data-id="${workout.date}">
+    <li class="workout workout--${workout.type}" data-id="${workout.id}">
         <h2 class="workout__title">${workout.description}</h2>
         <div class="workout__details">
           <span class="workout__icon">${
