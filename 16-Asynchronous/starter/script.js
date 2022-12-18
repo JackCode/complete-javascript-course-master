@@ -303,17 +303,32 @@ const getPosition = () =>
   );
 
 const whereAmI = async function () {
-  const position = await getPosition();
-  const { latitude: lat, longitude: lng } = position.coords;
-  const geoRes = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-  const geoData = await geoRes.json();
-  console.log(geoData);
-  const res = await fetch(
-    `https://restcountries.com/v2/name/${geoData.country}`
-  );
-  const data = await res.json();
-  renderCountry(data[0]);
+  try {
+    const position = await getPosition();
+    const { latitude: lat, longitude: lng } = position.coords;
+    const geoRes = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!geoRes.ok) throw new Error('Fetch for geo data failed');
+    const geoData = await geoRes.json();
+    console.log(geoData);
+    const res = await fetch(
+      `https://restcountries.com/v2/name/${geoData.country}`
+    );
+    if (!res.ok) throw new Error('Fetch for country data failed');
+    const data = await res.json();
+    renderCountry(data[0]);
+  } catch (err) {
+    console.log(err.message);
+    renderError(`⛔️ ${error.message}`);
+  }
 };
 
 whereAmI();
 console.log('FIRST');
+
+// try {
+//   let y = 1;
+//   const x = 3;
+//   x = y;
+// } catch (err) {
+//   alert(err.message);
+// }
