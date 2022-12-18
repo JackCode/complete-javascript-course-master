@@ -352,22 +352,58 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 //   console.log('3.');
 // })();
 
-const get3Countries = async function (c1, c2, c3) {
-  try {
-    // const [data1] = await getJSON(`https://restcountries.com/v2/name/${c1}`);
-    // const [data2] = await getJSON(`https://restcountries.com/v2/name/${c2}`);
-    // const [data3] = await getJSON(`https://restcountries.com/v2/name/${c3}`);
+// const get3Countries = async function (c1, c2, c3) {
+//   try {
+//     // const [data1] = await getJSON(`https://restcountries.com/v2/name/${c1}`);
+//     // const [data2] = await getJSON(`https://restcountries.com/v2/name/${c2}`);
+//     // const [data3] = await getJSON(`https://restcountries.com/v2/name/${c3}`);
 
-    // NOTE: rejects/short-circuits when one promise fails
-    const data = await Promise.all([
-      getJSON(`https://restcountries.com/v2/name/${c1}`),
-      getJSON(`https://restcountries.com/v2/name/${c2}`),
-      getJSON(`https://restcountries.com/v2/name/${c3}`),
-    ]);
-    // console.log([data1.capital, data2.capital, data3.capital]);
-    console.log(data.map(d => d[0].capital));
-  } catch (err) {
-    console.log(err);
-  }
-};
-get3Countries('portugal', 'canada', 'usa');
+//     // NOTE: rejects/short-circuits when one promise fails
+//     const data = await Promise.all([
+//       getJSON(`https://restcountries.com/v2/name/${c1}`),
+//       getJSON(`https://restcountries.com/v2/name/${c2}`),
+//       getJSON(`https://restcountries.com/v2/name/${c3}`),
+//     ]);
+//     // console.log([data1.capital, data2.capital, data3.capital]);
+//     console.log(data.map(d => d[0].capital));
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+// get3Countries('portugal', 'canada', 'usa');
+
+// Promise.race()
+// (async function () {
+//   const response = await Promise.race([
+//     getJSON(`https://restcountries.com/v2/name/italy`),
+//     getJSON(`https://restcountries.com/v2/name/mexico`),
+//     getJSON(`https://restcountries.com/v2/name/usa`),
+//   ]);
+//   console.log(response[0]);
+// })();
+
+// const timeout = function (seconds) {
+//   return new Promise(function (_, reject) {
+//     setTimeout(function () {
+//       reject(new Error('request took too long'));
+//     }, seconds * 1000);
+//   });
+// };
+
+// Promise.race([
+//   getJSON(`https://restcountries.com/v2/name/portugal`),
+//   timeout(0.0005),
+// ])
+//   .then(res => console.log(res[0]))
+//   .catch(err => console.error(err));
+
+// Returns array of all settled promises (does not short circuit)
+Promise.allSettled([
+  Promise.resolve('success1'),
+  Promise.resolve('success2'),
+  Promise.reject('rejected1'),
+  Promise.resolve('success3'),
+]).then(res => console.log(res));
+
+// ES2021 - same as promise.race but only returns first fulfilled whereas race returns rejects
+Promise.any();
