@@ -41,6 +41,7 @@ const countriesContainer = document.querySelector('.countries');
 // getCountryData('germany');
 
 const renderCountry = function (data, className = '') {
+  console.log(data.name);
   const html = `
     <article class="country ${className}">
       <img class="country__img" src="${data.flag}" />
@@ -60,37 +61,52 @@ const renderCountry = function (data, className = '') {
   countriesContainer.style.opacity = 1;
 };
 
-const getCountryAndNeighborData = function (countryName) {
-  // AJAX call country 1
-  const request = new XMLHttpRequest();
-  request.open('GET', `https://restcountries.com/v2/name/${countryName}`);
-  request.send();
-  // request.responseText(); // doesn't work because async
+// const getCountryAndNeighborData = function (countryName) {
+//   // AJAX call country 1
+//   const request = new XMLHttpRequest();
+//   request.open('GET', `https://restcountries.com/v2/name/${countryName}`);
+//   request.send();
+//   // request.responseText(); // doesn't work because async
 
-  request.addEventListener('load', function (e) {
-    // console.log(this.responseText);
-    const [data] = JSON.parse(this.responseText);
-    console.log(data);
+//   request.addEventListener('load', function (e) {
+//     // console.log(this.responseText);
+//     const [data] = JSON.parse(this.responseText);
+//     console.log(data);
 
-    renderCountry(data);
+//     renderCountry(data);
 
-    const neighbor = data.borders?.[0];
+//     const neighbor = data.borders?.[0];
 
-    if (!neighbor) return;
+//     if (!neighbor) return;
 
-    //Ajax Call 2
-    const request2 = new XMLHttpRequest();
-    request2.open('GET', `https://restcountries.com/v2/alpha/${neighbor}`);
-    request2.send();
-    // request.responseText(); // doesn't work because async
+//     //Ajax Call 2
+//     const request2 = new XMLHttpRequest();
+//     request2.open('GET', `https://restcountries.com/v2/alpha/${neighbor}`);
+//     request2.send();
+//     // request.responseText(); // doesn't work because async
 
-    request2.addEventListener('load', function (e) {
-      // console.log(this.responseText);
-      const data = JSON.parse(this.responseText);
+//     request2.addEventListener('load', function (e) {
+//       // console.log(this.responseText);
+//       const data = JSON.parse(this.responseText);
 
-      renderCountry(data, 'neighbour');
-    });
-  });
+//       renderCountry(data, 'neighbour');
+//     });
+//   });
+// };
+
+// getCountryAndNeighborData('usa');
+
+// const request = new XMLHttpRequest();
+//   request.open('GET', `https://restcountries.com/v2/name/${countryName}`);
+//   request.send();
+
+// const request = fetch('https://restcountries.com/v2/name/usa');
+// console.log(request);
+
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(response => response.json())
+    .then(data => renderCountry(data[0]));
 };
 
-getCountryAndNeighborData('usa');
+getCountryData('Morocco');
