@@ -13,3 +13,8 @@ const totalPrice = 236;
 const totalQty = 23;
 
 export { totalPrice, totalQty as qty };
+
+export default function (product, qty) {
+  cart.push({ product, qty });
+  console.log(`${qty} ${product} added to cart`);
+}
