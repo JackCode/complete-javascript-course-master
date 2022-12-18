@@ -398,12 +398,12 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 //   .catch(err => console.error(err));
 
 // Returns array of all settled promises (does not short circuit)
-Promise.allSettled([
-  Promise.resolve('success1'),
-  Promise.resolve('success2'),
-  Promise.reject('rejected1'),
-  Promise.resolve('success3'),
-]).then(res => console.log(res));
+// Promise.allSettled([
+//   Promise.resolve('success1'),
+//   Promise.resolve('success2'),
+//   Promise.reject('rejected1'),
+//   Promise.resolve('success3'),
+// ]).then(res => console.log(res));
 
-// ES2021 - same as promise.race but only returns first fulfilled whereas race returns rejects
-Promise.any();
+// // ES2021 - same as promise.race but only returns first fulfilled whereas race returns rejects
+// Promise.any();
