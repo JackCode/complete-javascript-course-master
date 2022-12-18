@@ -35,29 +35,38 @@
 // console.log(lastPost2);
 
 // the old module pattern
-const ShoppingCart2 = (function () {
-  const cart = [];
-  const shippingCost = 10;
-  const totalPrice = 237;
-  const totalQty = 23;
+// const ShoppingCart2 = (function () {
+//   const cart = [];
+//   const shippingCost = 10;
+//   const totalPrice = 237;
+//   const totalQty = 23;
 
-  const addToCart = function (product, qty) {
-    cart.push({ product, qty });
-    console.log(`${qty} ${product} added to cart`);
-  };
+//   const addToCart = function (product, qty) {
+//     cart.push({ product, qty });
+//     console.log(`${qty} ${product} added to cart`);
+//   };
 
-  const orderStock = function (product, qty) {
-    cart.push({ product, qty });
-    console.log(`${qty} ${product} ordered`);
-  };
+//   const orderStock = function (product, qty) {
+//     cart.push({ product, qty });
+//     console.log(`${qty} ${product} ordered`);
+//   };
 
-  return {
-    addToCart,
-    cart,
-    totalPrice,
-    totalQty,
-  };
-})();
+//   return {
+//     addToCart,
+//     cart,
+//     totalPrice,
+//     totalQty,
+//   };
+// })();
 
-ShoppingCart2.addToCart('apples', 4);
-console.log(ShoppingCart2);
+// ShoppingCart2.addToCart('apples', 4);
+// console.log(ShoppingCart2);
+
+// Common JS Modules
+// Exporting (works in node.js, but not browser)
+export.addToCart = function (product, qty) {
+  cart.push({ product, qty });
+  console.log(`${qty} ${product} added to cart`);
+};
+
+const { addToCart } = require('./shoppingCart.js')
