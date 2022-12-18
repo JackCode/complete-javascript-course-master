@@ -193,12 +193,74 @@ const countriesContainer = document.querySelector('.countries');
 
 // whereAmI(51.50354, -0.12768);
 
-console.log('Test Start');
-setTimeout(() => console.log('0 second timer'), 0);
-Promise.resolve('Resolved promise 1').then(res => console.log(res));
+// console.log('Test Start');
+// setTimeout(() => console.log('0 second timer'), 0);
+// Promise.resolve('Resolved promise 1').then(res => console.log(res));
 
-Promise.resolve('Resolved promise 2').then(res => {
-  for (let i = 0; i < 10000000000; i++) {}
-  console.log(res);
-});
-console.log('Test End');
+// Promise.resolve('Resolved promise 2').then(res => {
+//   for (let i = 0; i < 10000000000; i++) {}
+//   console.log(res);
+// });
+// console.log('Test End');
+
+// const lotteryPromise = new Promise(function (fulfilled, reject) {
+//   console.log('Conducting lottery 🔮');
+
+//   setTimeout(function () {
+//     if (Math.random() >= 0.5) {
+//       fulfilled('WINNER 💰');
+//     } else {
+//       reject(new Error('LOSER 💩'));
+//     }
+//   }, 2000);
+// });
+
+// lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+// Promisifying setTimeout
+// const wait = function (seconds) {
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
+
+// const wait = seconds =>
+//   new Promise(resolve => setTimeout(resolve, seconds * 1000));
+
+// wait(2)
+//   .then(() => {
+//     console.log('2 seconds done');
+//     return wait(1);
+//   })
+//   .then(() => console.log('1 second done'));
+
+// Promise.resolve('abc').then(x => console.log(x));
+// Promise.reject('noooo').catch(err => console.error(new Error(err)));
+
+console.log('Getting location');
+
+const getPosition = () =>
+  new Promise((resolve, reject) =>
+    navigator.geolocation.getCurrentPosition(resolve, reject)
+  );
+
+// getPosition().then(pos => console.log(pos));
+
+const whereAmI = function () {
+  getPosition()
+    .then(() => {
+      console.log(pos.coords);
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Unable to fetch location ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log(data.prov);
+      // getCountryData(data.prov);
+      return console.log(`You are in ${data.city}, ${data.country}`);
+    })
+    .catch(err => console.error(err));
+};
