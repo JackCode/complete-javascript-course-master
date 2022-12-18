@@ -108,23 +108,29 @@ const renderError = function (message) {
 // const request = fetch('https://restcountries.com/v2/name/usa');
 // console.log(request);
 
+const getJson = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(response => {
+    if (!response.ok) {
+      throw new Error(`${errorMsg}. (${response.status})`);
+    }
+    return response.json();
+  });
+};
+
 const getCountryData = function (country) {
-  fetch(`https://restcountries.com/v2/name/${country}`)
-    .then(
-      response => response.json()
-      // err => alert(err) // add catch method to end of chain instead
-    )
+  getJson(`https://restcountries.com/v2/name/${country}`, 'Country not found')
     .then(data => {
       renderCountry(data[0]);
       const neighbour = data[0]?.borders[0];
       if (!neighbour) return;
 
-      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
+      return getJson(
+        `https://restcountries.com/v2/alpha/${neighbour}`,
+        'Country not found'
+      );
     })
-    .then(response => response.json())
     .then(data => renderCountry(data, 'neighbour'))
     .catch(err => {
-      console.error(err);
       renderError(`Something went wrong: ${err.message}`);
     })
     .finally(() => (countriesContainer.style.opacity = 1));
@@ -134,4 +140,4 @@ btn.addEventListener('click', function () {
   getCountryData('mexico');
 });
 
-getCountryData('jfdksa');
+// getCountryData('jfdksa');
