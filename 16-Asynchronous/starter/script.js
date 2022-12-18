@@ -297,31 +297,31 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 //     .catch(err => console.error(err));
 // };
 
-const getPosition = () =>
-  new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(resolve, reject)
-  );
+// const getPosition = () =>
+//   new Promise((resolve, reject) =>
+//     navigator.geolocation.getCurrentPosition(resolve, reject)
+//   );
 
-const whereAmI = async function () {
-  try {
-    const position = await getPosition();
-    const { latitude: lat, longitude: lng } = position.coords;
-    const geoRes = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-    if (!geoRes.ok) throw new Error('Fetch for geo data failed');
-    const geoData = await geoRes.json();
-    const res = await fetch(
-      `https://restcountries.com/v2/name/${geoData.country}`
-    );
-    if (!res.ok) throw new Error('Fetch for country data failed');
-    const data = await res.json();
-    renderCountry(data[0]);
-    return `You are in ${geoData.city}, ${geoData.country}`;
-  } catch (err) {
-    console.log(err.message);
-    renderError(`⛔️ ${err.message}`);
-    throw err;
-  }
-};
+// const whereAmI = async function () {
+//   try {
+//     const position = await getPosition();
+//     const { latitude: lat, longitude: lng } = position.coords;
+//     const geoRes = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     if (!geoRes.ok) throw new Error('Fetch for geo data failed');
+//     const geoData = await geoRes.json();
+//     const res = await fetch(
+//       `https://restcountries.com/v2/name/${geoData.country}`
+//     );
+//     if (!res.ok) throw new Error('Fetch for country data failed');
+//     const data = await res.json();
+//     renderCountry(data[0]);
+//     return `You are in ${geoData.city}, ${geoData.country}`;
+//   } catch (err) {
+//     console.log(err.message);
+//     renderError(`⛔️ ${err.message}`);
+//     throw err;
+//   }
+// };
 
 // whereAmI();
 // console.log('FIRST');
@@ -334,10 +334,40 @@ const whereAmI = async function () {
 //   alert(err.message);
 // }
 
-console.log('1: Will get location');
-// const city = whereAmI().then();
-// console.log(city);
-whereAmI()
-  .then(city => console.log(`Fulfilled`))
-  .catch(err => console.log(`Error`))
-  .finally(console.log('3: Finished getting location'));
+// console.log('1: Will get location');
+// // const city = whereAmI().then();
+// // console.log(city);
+// whereAmI()
+//   .then(city => console.log(`Fulfilled`))
+//   .catch(err => console.log(`Error`))
+//   .finally(console.log('3: Finished getting location'));
+
+// (async function () {
+//   try {
+//     const city = await whereAmI();
+//     console.log(city);
+//   } catch (err) {
+//     err => console.log(`Error`);
+//   }
+//   console.log('3.');
+// })();
+
+const get3Countries = async function (c1, c2, c3) {
+  try {
+    // const [data1] = await getJSON(`https://restcountries.com/v2/name/${c1}`);
+    // const [data2] = await getJSON(`https://restcountries.com/v2/name/${c2}`);
+    // const [data3] = await getJSON(`https://restcountries.com/v2/name/${c3}`);
+
+    // NOTE: rejects/short-circuits when one promise fails
+    const data = await Promise.all([
+      getJSON(`https://restcountries.com/v2/name/${c1}`),
+      getJSON(`https://restcountries.com/v2/name/${c2}`),
+      getJSON(`https://restcountries.com/v2/name/${c3}`),
+    ]);
+    // console.log([data1.capital, data2.capital, data3.capital]);
+    console.log(data.map(d => d[0].capital));
+  } catch (err) {
+    console.log(err);
+  }
+};
+get3Countries('portugal', 'canada', 'usa');
