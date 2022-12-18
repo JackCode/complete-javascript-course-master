@@ -309,21 +309,22 @@ const whereAmI = async function () {
     const geoRes = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
     if (!geoRes.ok) throw new Error('Fetch for geo data failed');
     const geoData = await geoRes.json();
-    console.log(geoData);
     const res = await fetch(
       `https://restcountries.com/v2/name/${geoData.country}`
     );
     if (!res.ok) throw new Error('Fetch for country data failed');
     const data = await res.json();
     renderCountry(data[0]);
+    return `You are in ${geoData.city}, ${geoData.country}`;
   } catch (err) {
     console.log(err.message);
-    renderError(`⛔️ ${error.message}`);
+    renderError(`⛔️ ${err.message}`);
+    throw err;
   }
 };
 
-whereAmI();
-console.log('FIRST');
+// whereAmI();
+// console.log('FIRST');
 
 // try {
 //   let y = 1;
@@ -332,3 +333,11 @@ console.log('FIRST');
 // } catch (err) {
 //   alert(err.message);
 // }
+
+console.log('1: Will get location');
+// const city = whereAmI().then();
+// console.log(city);
+whereAmI()
+  .then(city => console.log(`Fulfilled`))
+  .catch(err => console.log(`Error`))
+  .finally(console.log('3: Finished getting location'));
