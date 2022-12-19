@@ -64,9 +64,23 @@
 
 // Common JS Modules
 // Exporting (works in node.js, but not browser)
-export.addToCart = function (product, qty) {
-  cart.push({ product, qty });
-  console.log(`${qty} ${product} added to cart`);
+// export.addToCart = function (product, qty) {
+//   cart.push({ product, qty });
+//   console.log(`${qty} ${product} added to cart`);
+// };
+
+// const { addToCart } = require('./shoppingCart.js')
+
+import cloneDeep from '../../node_modules/lodash-es/cloneDeep.js';
+
+const state = {
+  cart: [
+    { product: 'bread', qt: 5 },
+    { product: 'pizza', qt: 4 },
+  ],
+  user: { loggedIn: true },
 };
 
-const { addToCart } = require('./shoppingCart.js')
+// const stateClone = Object.assign({}, state);
+const stateClone 
+console.log(stateClone);
