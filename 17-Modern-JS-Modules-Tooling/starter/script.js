@@ -71,7 +71,9 @@
 
 // const { addToCart } = require('./shoppingCart.js')
 
-import cloneDeep from '../../node_modules/lodash-es/cloneDeep.js';
+import add, { cart } from './shoppingCart.js';
+// import cloneDeep from '../../node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es';
 
 const state = {
   cart: [
@@ -81,6 +83,12 @@ const state = {
   user: { loggedIn: true },
 };
 
-// const stateClone = Object.assign({}, state);
-const stateClone 
+// const stateClone = Object.assign({}, state); // Does not copy super deep
+const stateClone = cloneDeep(state); // so deep
+stateClone.user.loggedIn = false;
+console.log(state);
 console.log(stateClone);
+
+if (module.hot) {
+  module.hot.accept();
+}
