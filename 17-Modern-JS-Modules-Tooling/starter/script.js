@@ -78,17 +78,32 @@ import cloneDeep from 'lodash-es';
 const state = {
   cart: [
     { product: 'bread', qt: 5 },
-    { product: 'pizza', qt: 4 },
+    { product: 'pizza', qt: 1 },
   ],
   user: { loggedIn: true },
 };
 
-// const stateClone = Object.assign({}, state); // Does not copy super deep
-const stateClone = cloneDeep(state); // so deep
-stateClone.user.loggedIn = false;
+const stateClone = Object.assign({}, state); // Does not copy super deep
+const stateDeepClone = cloneDeep(state); // so deep
+state.user.loggedIn = false;
 console.log(state);
 console.log(stateClone);
+console.log(stateDeepClone);
 
 if (module.hot) {
   module.hot.accept();
 }
+
+class Person {
+  greeting = 'Hey';
+
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting}, ${this.name}`);
+  }
+}
+const jackson = new Person('Jackson');
+
+console.log(cart.find(el => el.qty >= 2));
+
+import 'core-js/stable';
