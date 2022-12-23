@@ -10,9 +10,9 @@ import paginationView from './views/paginationView.js';
 
 ///////////////////////////////////////
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
 
 const controlRecipes = async function () {
   try {
@@ -20,6 +20,9 @@ const controlRecipes = async function () {
 
     if (!id) return;
     recipeView.renderSpinner();
+
+    // Update to mark selected result
+    resultsView.update(model.getSearchResultsPage());
 
     await model.loadRecipe(id);
 
