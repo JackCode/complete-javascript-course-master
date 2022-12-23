@@ -2,9 +2,11 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import paginationView from './views/paginationView.js';
+
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
 
 // https://forkify-api.herokuapp.com/v2
 
@@ -23,6 +25,7 @@ const controlRecipes = async function () {
 
     // Update to mark selected result
     resultsView.update(model.getSearchResultsPage());
+    bookmarksView.update(model.state.bookmarks);
 
     await model.loadRecipe(id);
 
@@ -84,7 +87,7 @@ const controlAddBookmark = function () {
   }
 
   recipeView.update(model.state.recipe);
-  console.log(model.state.recipe);
+  bookmarksView.render(model.state.bookmarks);
 };
 
 // Initialize Application
