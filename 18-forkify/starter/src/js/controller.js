@@ -90,8 +90,18 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlLoadBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
+
+// Use to clear in dev
+const clearBookmarks = function () {
+  localStorage.clear('bookmarks');
+};
+
 // Initialize Application
 (function () {
+  bookmarksView.addHandlerRender(controlLoadBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerBookmark(controlAddBookmark);
