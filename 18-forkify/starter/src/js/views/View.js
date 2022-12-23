@@ -58,4 +58,33 @@ export default class View {
     `;
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
+
+  update(data) {
+    if (!data || (Array.isArray(data) && data.length === 0)) {
+      return this.renderError();
+    }
+    this._data = data;
+    const newMarkup = this._generateMarkup();
+
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = Array.from(newDOM.querySelectorAll('*'));
+    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
+
+    newElements.forEach((newEl, i) => {
+      const curEl = curElements[i];
+
+      if (!newEl.isEqualNode(curEl)) {
+        // Replace text child of changed objects
+        if (newEl.firstChild?.nodeValue.trim() !== '') {
+          curEl.textContent = newEl.textContent;
+        }
+
+        // Replace attributes of changed objects
+        Array.from(newEl.attributes).forEach(attr => {
+          console.log(attr);
+          curEl.setAttribute(attr.name, attr.value);
+        });
+      }
+    });
+  }
 }
