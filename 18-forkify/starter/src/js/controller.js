@@ -3,10 +3,11 @@ import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
+import addRecipeView from './views/addRecipeView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import bookmarksView from './views/bookmarksView.js';
 
 // https://forkify-api.herokuapp.com/v2
 
@@ -99,6 +100,10 @@ const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
 
+const controlAddRecipe = function (newRecipe) {
+  console.log(newRecipe);
+};
+
 // Initialize Application
 (function () {
   bookmarksView.addHandlerRender(controlLoadBookmarks);
@@ -107,4 +112,5 @@ const clearBookmarks = function () {
   recipeView.addHandlerBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerPaginate(controlPagination);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 })();
